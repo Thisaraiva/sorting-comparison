@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparação de Algoritmos</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Comparação de Algoritmos de Ordenação</h1>
+        <div class="controls">
+            <label for="algorithm">Selecione o algoritmo:</label>
+            <select id="algorithm">
+                <option value="bubble">Bubble Sort</option>
+                <option value="bubble-improved">Bubble Sort Melhorado</option>
+                <option value="insertion">Insertion Sort</option>
+                <option value="selection">Selection Sort</option>
+                <option value="quick">Quick Sort</option>
+                <option value="merge">Merge Sort</option>
+                <option value="tim">Tim Sort</option>
+                <option value="heap">Heap Sort</option>
+                <option value="counting">Counting Sort</option>
+                <option value="radix">Radix Sort</option>
+                <option value="shell">Shell Sort</option>
+            </select>
+            <label for="size">Selecione o tamanho dos dados:</label>
+            <select id="size">
+                <option value="1000">1.000 números</option>
+                <option value="10000">10.000 números</option>
+                <option value="100000">100.000 números</option>
+            </select>
+            <button onclick="runSort()">Executar</button>
+        </div>
+        <div class="results">
+            <h2>Resultados</h2>
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Algoritmo</th>
+                        <th>Tempo (ms)</th>
+                        <th>Comparações</th>
+                        <th>Trocas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Resultados serão inseridos aqui -->
+                </tbody>
+            </table>
+            <canvas id="chart"></canvas>
+        </div>
+    </div>
+</body>
+</html>

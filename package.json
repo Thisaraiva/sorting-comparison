@@ -1,0 +1,23 @@
+{
+  "name": "sorting-comparison",
+  "version": "1.0.0",
+  "description": "Sorting Algorithm Comparison Activity from the Advanced Algorithms discipline",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.56.1",
+    "@opentelemetry/exporter-jaeger": "^1.30.1",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.57.2",
+    "@opentelemetry/sdk-node": "^0.57.2",
+    "chart.js": "^4.4.8",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security"
+  }
+}
