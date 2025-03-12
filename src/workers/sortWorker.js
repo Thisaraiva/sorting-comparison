@@ -1,5 +1,6 @@
 const { workerData, parentPort } = require("worker_threads");
 const fs = require("fs");
+const { Logger } = require('@opentelemetry/api-logs');
 
 // Importação de todos os algoritmos de ordenação
 const BubbleSort = require("../algorithms/bubbleSort");
@@ -77,6 +78,13 @@ try {
     const result = sorter.sort(numbers);
     const end = Date.now();
 
+    // Logs detalhados
+    const logMessage = `Algoritmo: ${algorithm}, Tamanho do conjunto de dados: ${size}, Tempo de execução: ${end - start}ms, Comparações: ${result.comparisons}, Trocas: ${result.swaps}`;
+    console.log(logMessage);
+
+    // Escreve o log no arquivo execution.log
+    fs.appendFileSync('src/logs/execution.log', `${new Date().toISOString()} - ${logMessage}\n`);
+
     // Envia os resultados de volta para o thread principal
     parentPort.postMessage({
         algorithm,
@@ -87,6 +95,7 @@ try {
     });
 } catch (error) {
     console.error(`Erro no Worker: ${error.message}`);
+    fs.appendFileSync('src/logs/execution.log', `${new Date().toISOString()} - Erro no Worker: ${error.message}\n`);
     parentPort.postMessage({
         error: error.message,
     });
