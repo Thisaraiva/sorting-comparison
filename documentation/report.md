@@ -414,7 +414,7 @@ Esses registros permitem avaliar a eficiência dos algoritmos e comparar seus de
 
 O processo de geração dos dados garante que os testes sejam realizados com entradas variadas e controladas. Isso possibilita uma análise comparativa mais precisa entre os algoritmos de ordenação, permitindo a identificação de suas vantagens e desvantagens em diferentes cenários.
 
-Observação: Os arquivos gerados podem ser consultados na pasta src/data/numbers_<qtde_num>.txt
+Observação: Os arquivos gerados podem ser consultados na pasta `src/data/numbers_<qtde_num>.txt`
 
 ## 5. Métricas e Gráficos Comparativos de Desempenho
 
@@ -432,7 +432,7 @@ A abordagem utilizada possibilita que o usuário execute diferentes algoritmos, 
 
 Dessa forma, a análise das métricas e dos gráficos gerados proporciona uma visão detalhada do comportamento de cada algoritmo, auxiliando na compreensão de suas eficiências e limitações.
 
-Observação: O arquivo de log com os resultados pode ser consultado na pasta src/logs/execution.log. Algumas imagens com a tela da aplicação apresentando os resultados da tabela e do gráfico comparativo na interface de usuário no navegador Chrome podem ser consultadas na pasta documentation/images/TabelaComparativaOrdenacao.png
+Observação: O arquivo de log com os resultados pode ser consultado na pasta `src/logs/execution.log`. Algumas imagens com a tela da aplicação apresentando os resultados da tabela e do gráfico comparativo na interface de usuário no navegador Chrome podem ser consultadas na pasta documentation/images/TabelaComparativaOrdenacao.png
 
 * Abaixo uma parte do arquivo de log como foi criado:
 
@@ -480,8 +480,8 @@ Para facilitar a interpretação dos resultados, os dados de desempenho dos algo
 A abordagem adotada, combinando OpenTelemetry, Jaeger e Chart.js, permitiu não apenas a captura e armazenamento estruturado dos logs, mas também a análise visual das métricas de desempenho dos algoritmos. Com essa solução, foi possível identificar padrões de eficiência e comparar os algoritmos de maneira clara e objetiva.
 
 Observação: 
-- Os arquivos de exemplo dos logs do Jaeger podem ser encontrados em documentation/images/LogJaeger.png e documentation/images/LogJaeger_1.png. Além de um arquivo documentation/traces-1741875658792.json que se refere a log do Jaeger com os traces registrados em um determinado período.
-- O arquivo de log com os resultados pode ser consultado na pasta src/logs/execution.log. Algumas imagens com a tela da aplicação apresentando os resultados da tabela e do gráfico comparativo na interface de usuário no navegador Chrome podem ser consultadas na pasta documentation/iamges/TabelaComparativaOrdenacao.png
+- Os arquivos de exemplo dos logs do Jaeger podem ser encontrados na pasta `documentation/images/LogJaeger.png` e `documentation/images/LogJaeger_1.png`. Além de um arquivo `documentation/traces-1741875658792.json` que se refere a log do Jaeger com os traces registrados em um determinado período.
+- O arquivo de log com os resultados pode ser consultado na pasta `src/logs/execution.log`. Algumas imagens com a tela da aplicação apresentando os resultados da tabela e do gráfico comparativo na interface de usuário no navegador Chrome podem ser consultadas na pasta `documentation/iamges/TabelaComparativaOrdenacao.png`.
 
 ---
 
