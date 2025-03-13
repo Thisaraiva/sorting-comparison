@@ -8,19 +8,20 @@ O projeto Sorting Comparison foi desenvolvido seguindo boas práticas de organiz
 
 A organização do projeto segue uma abordagem clara e bem definida:
 
+```perl
 sorting-comparison/
-│── documentation/               Documentação do projeto
-│   ├── report.txt               Relatório técnico do projeto
+│── documentation/               # Documentação do projeto
+│   ├── report.txt               # Relatório técnico do projeto
 │
-│── node_modules/                Dependências do projeto (gerenciado pelo npm)
+│── node_modules/                # Dependências do projeto (gerenciado pelo npm)
 │
-│── public/                      Frontend da aplicação
-│   ├── index.html               Página principal da interface web
-│   ├── script.js                Lógica para interação no frontend
-│   ├── styles.css               Estilos CSS
+│── public/                      # Frontend da aplicação
+│   ├── index.html               # Página principal da interface web
+│   ├── script.js                # Lógica para interação no frontend
+│   ├── styles.css               # Estilos CSS
 │
-│── src/                         Código-fonte principal da aplicação
-│   │── algorithms/              Implementações dos algoritmos de ordenação
+│── src/                         # Código-fonte principal da aplicação
+│   │── algorithms/              # Implementações dos algoritmos de ordenação
 │   │   ├── bubbleSort.js
 │   │   ├── bubbleSortImproved.js
 │   │   ├── countingSort.js
@@ -32,30 +33,32 @@ sorting-comparison/
 │   │   ├── selectionSort.js
 │   │   ├── shellSort.js
 │   │   ├── timSort.js
-│   │   ├── strategy.js          Implementação do padrão Strategy
+│   │   ├── strategy.js          # Implementação do padrão Strategy
 │   │
-│   │── data/                    Geração e armazenamento de dados de entrada
-│   │   ├── generator.js         Script para gerar números aleatórios
+│   │── data/                    # Geração e armazenamento de dados de entrada
+│   │   ├── generator.js         # Script para gerar números aleatórios
 │   │   ├── numbers_1000.txt
 │   │   ├── numbers_10000.txt
 │   │   ├── numbers_100000.txt
 │   │
-│   │── logs/                    Diretório para armazenar logs de execução
+│   │── logs/                    # Diretório para armazenar logs de execução
 │   │   ├── execution.log
 │   │
-│   │── opentelemetry/           Configuração do OpenTelemetry
+│   │── opentelemetry/           # Configuração do OpenTelemetry
 │   │   ├── telemetry.js
 │   │
-│   │── workers/                 Workers para execução assíncrona dos algoritmos
+│   │── workers/                 # Workers para execução assíncrona dos algoritmos
 │   │   ├── sortWorker.js
 │   │
-│   ├── routes.js                Definição das rotas da API
-│   ├── server.js                Configuração do servidor Express
+│   ├── routes.js                # Definição das rotas da API
+│   ├── server.js                # Configuração do servidor Express
 │
-│── .gitignore                   Arquivos ignorados pelo Git
-│── package.json                 Dependências do projeto
-│── package-lock.json            Controle de versões das dependências
-│── README.md                    Documentação inicial do projeto
+│── .gitignore                   # Arquivos ignorados pelo Git
+│── package.json                 # Dependências do projeto
+│── package-lock.json            # Controle de versões das dependências
+│── README.md                    # Documentação inicial do projeto
+
+```
 
 ### 1.2 Organização do Código
 
@@ -89,10 +92,12 @@ class BubbleSort extends SortStrategy {
 }
 
 module.exports = BubbleSort;
+```
 
 Implementação do Padrão Strategy
 A classe strategy.js permite a fácil substituição de algoritmos de ordenação em tempo de execução:
 
+```javascript
 class SortStrategy {
     sort(array) {
         throw new Error("Método sort() deve ser implementado!");
@@ -100,6 +105,7 @@ class SortStrategy {
 }
 
 module.exports = SortStrategy;
+```
 
 ### Execução Assíncrona com Workers
 
@@ -135,14 +141,18 @@ Opção 1: Comando em uma única linha:
 
 ```bash
 docker run -d --name jaeger -e COLLECTOR_OTLP_ENABLED=true -p 16686:16686 -p 4317:4317 -p 4318:4318 jaegertracing/all-in-one:latest
+```
 
 Opção 2: Usando ^ para continuar a linha:
+
+```bash
 docker run -d --name jaeger ^
   -e COLLECTOR_OTLP_ENABLED=true ^
   -p 16686:16686 ^
   -p 4317:4317 ^
   -p 4318:4318 ^
   jaegertracing/all-in-one:latest
+```
 
 #### Observações sobre alguns algoritmos:
 
@@ -178,6 +188,7 @@ class SortStrategy {
 }
 
 module.exports = SortStrategy;
+```
 
 Essa classe abstrata garante que todas as estratégias sigam um mesmo contrato, obrigando a implementação do método sort() em cada algoritmo de ordenação.
 
@@ -226,12 +237,14 @@ class QuickSort extends SortStrategy {
 
 
 module.exports = QuickSort;
+```
 
 Aqui, a classe QuickSort estende SortingStrategy e implementa o método sort(), garantindo que o algoritmo siga o contrato definido pela Strategy.
 
 #### 3. Seleção do Algoritmo em Tempo de Execução (routes.js e sortWorker.js)
 
 - routes.js
+```javascript
 // Rota para executar o algoritmo de ordenação
 router.get("/sort/:algorithm/:size", (req, res) => {
     const { algorithm, size } = req.params;
@@ -255,8 +268,10 @@ router.get("/sort/:algorithm/:size", (req, res) => {
             responseSent = true;
         }
     });
+```
 
 - sortWorker.js
+```javascript
 // Seleciona o algoritmo com base no parâmetro recebido
 switch (algorithm) {
     case "bubble":
@@ -338,6 +353,7 @@ try {
         error: error.message,
     });
 }
+```
 
 Aqui, o programa permite escolher o algoritmo dinamicamente em tempo de execução, chamando const result = sorter.sort(numbers), baseado na escoha do switch case.
 
@@ -429,7 +445,7 @@ Observação: O arquivo de log com os resultados pode ser consultado na pasta sr
 
 ## 5. Descrição da ferramenta utilizada para logs e análise dos resultados
 
-Para a captura e análise dos logs gerados durante a execução dos algoritmos de ordenação, utilizamos o OpenTelemetry como ferramenta principal de instrumentação, em conjunto com o Jaeger para visualização dos traces e logs. Além disso, empregamos uma abordagem baseada na coleta de métricas e exibição gráfica dos dados utilizando JavaScript, HTML e a biblioteca Chart.js.
+Para a captura e análise dos logs gerados durante a execução dos algoritmos de ordenação, utilizou-se o OpenTelemetry como ferramenta principal de instrumentação, em conjunto com o Jaeger para visualização dos traces e logs. Além disso, empregou-se uma abordagem baseada na coleta de métricas e exibição gráfica dos dados utilizando JavaScript, HTML e a biblioteca Chart.js.
 
 ### Instrumentação e Coleta de Logs
 
@@ -461,8 +477,6 @@ A abordagem adotada, combinando OpenTelemetry, Jaeger e Chart.js, permitiu não 
 Observação: 
 - Os arquivos de exemplo dos logs do Jaeger podem ser encontrados em documentation/images/LogJaeger.png e documentation/images/LogJaeger_1.png. Além de um arquivo documentation/traces-1741875658792.json que se refere a log do Jaeger com os traces registrados em um determinado período.
 - O arquivo de log com os resultados pode ser consultado na pasta src/logs/execution.log. Algumas imagens com a tela da aplicação apresentando os resultados da tabela e do gráfico comparativo na interface de usuário no navegador Chrome podem ser consultadas na pasta documentation/iamges/TabelaComparativaOrdenacao.png
-
-
 
 ---
 
