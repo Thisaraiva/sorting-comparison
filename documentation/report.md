@@ -197,7 +197,7 @@ module.exports = SortStrategy;
 
 Essa classe abstrata garante que todas as estratégias sigam um mesmo contrato, obrigando a implementação do método sort() em cada algoritmo de ordenação.
 
-####2. Implementação de um Algoritmo (Exemplo: Quick Sort)
+#### 2. Implementação de um Algoritmo (Exemplo: Quick Sort)
 
 ```javascript
 const SortStrategy = require("./strategy");
@@ -370,11 +370,11 @@ Vantagens do Uso do Padrão Strategy
 
 O uso do padrão Strategy foi essencial para garantir que a implementação dos algoritmos de ordenação fosse estruturada de forma limpa e eficiente. Com essa abordagem, conseguimos criar um sistema flexível que pode ser facilmente expandido para incluir novos algoritmos sem afetar a lógica existente.
 
-## 4. Processo de Geração dos Dados
+## 3. Processo de Geração dos Dados
 
 O processo de geração dos dados é essencial para a execução e avaliação dos algoritmos de ordenação. Ele envolve a criação de arquivos contendo conjuntos de números aleatórios, que posteriormente são utilizados como entrada nos algoritmos. Esse processo garante que a análise de desempenho seja realizada com dados variados e de tamanhos diferentes.
 
-### 4.1. Geração dos Números Aleatórios
+### 3.1. Geração dos Números Aleatórios
 
 A geração dos dados é realizada pelo arquivo `src/data/generator.js`. Esse script é responsável por:
 
@@ -416,7 +416,7 @@ O processo de geração dos dados garante que os testes sejam realizados com ent
 
 Observação: Os arquivos gerados podem ser consultados na pasta `src/data/numbers_<qtde_num>.txt`
 
-## 5. Métricas e Gráficos Comparativos de Desempenho
+## 4. Métricas e Gráficos Comparativos de Desempenho
 
 Para avaliar o desempenho dos algoritmos de ordenação utilizados na aplicação, foram coletadas métricas relevantes como tempo de execução (em milissegundos), número de comparações e quantidade de trocas realizadas durante o processo de ordenação. Essas métricas foram exibidas em uma tabela e representadas graficamente por meio de um gráfico de barras para facilitar a análise comparativa.
 
@@ -487,7 +487,7 @@ Observação:
 
 # 6. Conclusão
 
-6. Vou dividir a análise em partes:
+## 6. Vou dividir a análise em partes:
 
 ### **1. Qual algoritmo apresentou melhor desempenho em diferentes cenários?**
 O desempenho dos algoritmos pode ser avaliado com base no **tempo de execução**, **número de comparações** e **número de trocas**. Os algoritmos que se destacaram foram:
