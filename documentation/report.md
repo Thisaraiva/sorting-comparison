@@ -9,18 +9,18 @@ O projeto Sorting Comparison foi desenvolvido seguindo boas práticas de organiz
 A organização do projeto segue uma abordagem clara e bem definida:
 
 sorting-comparison/
-│── documentation/               # Documentação do projeto
-│   ├── report.txt               # Relatório técnico do projeto
+│── documentation/               Documentação do projeto
+│   ├── report.txt               Relatório técnico do projeto
 │
-│── node_modules/                # Dependências do projeto (gerenciado pelo npm)
+│── node_modules/                Dependências do projeto (gerenciado pelo npm)
 │
-│── public/                      # Frontend da aplicação
-│   ├── index.html               # Página principal da interface web
-│   ├── script.js                # Lógica para interação no frontend
-│   ├── styles.css               # Estilos CSS
+│── public/                      Frontend da aplicação
+│   ├── index.html               Página principal da interface web
+│   ├── script.js                Lógica para interação no frontend
+│   ├── styles.css               Estilos CSS
 │
-│── src/                         # Código-fonte principal da aplicação
-│   │── algorithms/              # Implementações dos algoritmos de ordenação
+│── src/                         Código-fonte principal da aplicação
+│   │── algorithms/              Implementações dos algoritmos de ordenação
 │   │   ├── bubbleSort.js
 │   │   ├── bubbleSortImproved.js
 │   │   ├── countingSort.js
@@ -32,30 +32,30 @@ sorting-comparison/
 │   │   ├── selectionSort.js
 │   │   ├── shellSort.js
 │   │   ├── timSort.js
-│   │   ├── strategy.js          # Implementação do padrão Strategy
+│   │   ├── strategy.js          Implementação do padrão Strategy
 │   │
-│   │── data/                    # Geração e armazenamento de dados de entrada
-│   │   ├── generator.js         # Script para gerar números aleatórios
+│   │── data/                    Geração e armazenamento de dados de entrada
+│   │   ├── generator.js         Script para gerar números aleatórios
 │   │   ├── numbers_1000.txt
 │   │   ├── numbers_10000.txt
 │   │   ├── numbers_100000.txt
 │   │
-│   │── logs/                    # Diretório para armazenar logs de execução
+│   │── logs/                    Diretório para armazenar logs de execução
 │   │   ├── execution.log
 │   │
-│   │── opentelemetry/           # Configuração do OpenTelemetry
+│   │── opentelemetry/           Configuração do OpenTelemetry
 │   │   ├── telemetry.js
 │   │
-│   │── workers/                 # Workers para execução assíncrona dos algoritmos
+│   │── workers/                 Workers para execução assíncrona dos algoritmos
 │   │   ├── sortWorker.js
 │   │
-│   ├── routes.js                # Definição das rotas da API
-│   ├── server.js                # Configuração do servidor Express
+│   ├── routes.js                Definição das rotas da API
+│   ├── server.js                Configuração do servidor Express
 │
-│── .gitignore                   # Arquivos ignorados pelo Git
-│── package.json                 # Dependências do projeto
-│── package-lock.json            # Controle de versões das dependências
-│── README.md                    # Documentação inicial do projeto
+│── .gitignore                   Arquivos ignorados pelo Git
+│── package.json                 Dependências do projeto
+│── package-lock.json            Controle de versões das dependências
+│── README.md                    Documentação inicial do projeto
 
 ### 1.2 Organização do Código
 
