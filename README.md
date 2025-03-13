@@ -1,6 +1,8 @@
 # sorting-comparison
 Sorting Algorithm Comparison Activity from the Advanced Algorithms discipline
 
+### As respostas para essa atividade estão na pasta `**documentation**` e o arquivo `**report.md**`contém o relatório final para a atividade.
+
 # Atividade de Comparação de Algoritmos de Ordenação
 
 **Vence:** 18 de março de 2025 às 23:59
