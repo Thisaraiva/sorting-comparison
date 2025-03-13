@@ -5,39 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comparação de Algoritmos</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script defer src="script.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Comparação de Algoritmos de Ordenação</h1>
-        <div class="controls">
-            <!-- Botão para gerar novos números -->
-            <button onclick="generateNumbers()">Gerar Novos Números Aleatórios</button>
-
-            <!-- Seleção de algoritmo e tamanho existente -->
-            <label for="algorithm">Selecione o algoritmo:</label>
-            <select id="algorithm">
-                <option value="bubble">Bubble Sort</option>
-                <option value="bubble-improved">Bubble Sort Melhorado</option>
-                <option value="insertion">Insertion Sort</option>
-                <option value="selection">Selection Sort</option>
-                <option value="quick">Quick Sort</option>
-                <option value="merge">Merge Sort</option>
-                <option value="tim">Tim Sort</option>
-                <option value="heap">Heap Sort</option>
-                <option value="counting">Counting Sort</option>
-                <option value="radix">Radix Sort</option>
-                <option value="shell">Shell Sort</option>
-            </select>
-            <label for="size">Selecione o tamanho dos dados:</label>
-            <select id="size">
-                <option value="1000">1.000 números</option>
-                <option value="10000">10.000 números</option>
-                <option value="100000">100.000 números</option>
-            </select>
-            <button onclick="runSort()">Executar</button>
+        
+        <!-- Seção de Geração de Números -->
+        <div class="controls-section">
+            <h2>Geração de Números</h2>
+            <button onclick="generateNumbers()">
+                <i class="material-icons">refresh</i>
+                Gerar Novos Números Aleatórios
+            </button>
         </div>
+
+        <!-- Seção de Execução do Algoritmo -->
+        <div class="controls-section">
+            <h2>Execução do Algoritmo</h2>
+            <div class="controls-group">
+                <div class="control">
+                    <label for="algorithm">Selecione o algoritmo:</label>
+                    <select id="algorithm">
+                        <option value="bubble">Bubble Sort</option>
+                        <option value="bubble-improved">Bubble Sort Melhorado</option>
+                        <option value="insertion">Insertion Sort</option>
+                        <option value="selection">Selection Sort</option>
+                        <option value="quick">Quick Sort</option>
+                        <option value="merge">Merge Sort</option>
+                        <option value="tim">Tim Sort</option>
+                        <option value="heap">Heap Sort</option>
+                        <option value="counting">Counting Sort</option>
+                        <option value="radix">Radix Sort</option>
+                        <option value="shell">Shell Sort</option>
+                    </select>
+                </div>
+                <div class="control">
+                    <label for="size">Selecione o tamanho dos dados:</label>
+                    <select id="size">
+                        <option value="1000">1.000 números</option>
+                        <option value="10000">10.000 números</option>
+                        <option value="100000">100.000 números</option>
+                    </select>
+                </div>
+                <button onclick="runSort()">
+                    <i class="material-icons">play_arrow</i>
+                    Executar
+                </button>
+            </div>
+        </div>
+
+        <!-- Seção de Resultados -->
         <div class="results">
             <h2>Resultados</h2>
             <table id="results-table">

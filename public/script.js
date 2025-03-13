@@ -2,6 +2,10 @@ let results = []; // Armazena os resultados de cada execução
 
 // Função para gerar novos números
 async function generateNumbers() {
+    const button = document.querySelector('button[onclick="generateNumbers()"]');
+    button.disabled = true;
+    button.innerHTML = '<i class="material-icons">refresh</i> Gerando...';
+
     try {
         const response = await fetch("http://localhost:3000/generate-numbers", {
             method: "POST",
@@ -20,6 +24,9 @@ async function generateNumbers() {
     } catch (error) {
         console.error("Erro ao gerar números:", error);
         alert(`Erro ao gerar números: ${error.message}`);
+    } finally {
+        button.disabled = false;
+        button.innerHTML = '<i class="material-icons">refresh</i> Gerar Novos Números Aleatórios';
     }
 }
 
