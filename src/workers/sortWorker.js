@@ -79,7 +79,7 @@ try {
     const end = Date.now();
 
     // Logs detalhados
-    const logMessage = `Algoritmo: ${algorithm}, Tamanho do conjunto de dados: ${size}, Tempo de execução: ${end - start}ms, Comparações: ${result.comparisons}, Trocas: ${result.swaps}`;
+    const logMessage = `Lendo arquivo: ${filePath}, Algoritmo: ${algorithm}, Tamanho do conjunto de dados: ${size}, Dados lidos: ${data.substring(0, 50)}..., Números convertidos: ${numbers.length} elementos, Tempo de execução: ${end - start}ms, Comparações: ${result.comparisons}, Trocas: ${result.swaps}`;
     console.log(logMessage);
 
     // Escreve o log no arquivo execution.log

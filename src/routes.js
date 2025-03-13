@@ -1,7 +1,24 @@
 const express = require("express");
 const { Worker } = require("worker_threads");
+const generateNumbers = require("./data/generator"); // Importa a função do generator.js
 const router = express.Router();
 
+// Rota para gerar novos números
+router.post("/generate-numbers", (req, res) => {
+    try {
+        // Gera os três arquivos de números aleatórios
+        generateNumbers(1000);
+        generateNumbers(10000);
+        generateNumbers(100000);
+
+        res.json({ success: true, message: "Arquivos de números aleatórios gerados com sucesso." });
+    } catch (error) {
+        console.error("Erro ao gerar números:", error);
+        res.status(500).json({ error: "Erro ao gerar números." });
+    }
+});
+
+// Rota para executar o algoritmo de ordenação
 router.get("/sort/:algorithm/:size", (req, res) => {
     const { algorithm, size } = req.params;
     console.log(`Executando ${algorithm} com ${size} números...`);

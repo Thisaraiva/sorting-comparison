@@ -6,7 +6,5 @@ function generateNumbers(size) {
     console.log(`Arquivo numbers_${size}.txt criado com ${size} números.`);
 }
 
-// Gerar arquivos para 1.000, 10.000 e 100.000 números
-generateNumbers(1000);
-generateNumbers(10000);
-generateNumbers(100000);
+// Exporta a função para ser usada em outros módulos
+module.exports = generateNumbers;

@@ -1,5 +1,29 @@
 let results = []; // Armazena os resultados de cada execução
 
+// Função para gerar novos números
+async function generateNumbers() {
+    try {
+        const response = await fetch("http://localhost:3000/generate-numbers", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert(data.message);
+        } else {
+            alert(`Erro: ${data.error}`);
+        }
+    } catch (error) {
+        console.error("Erro ao gerar números:", error);
+        alert(`Erro ao gerar números: ${error.message}`);
+    }
+}
+
+// Função para executar o algoritmo de ordenação
 async function runSort() {
     const algorithm = document.getElementById("algorithm").value;
     const size = document.getElementById("size").value;
@@ -31,6 +55,7 @@ async function runSort() {
     }
 }
 
+// Função para atualizar a tabela de resultados
 function updateTable() {
     const tableBody = document.querySelector("#results-table tbody");
     tableBody.innerHTML = ""; // Limpa a tabela
@@ -48,6 +73,7 @@ function updateTable() {
     });
 }
 
+// Função para atualizar o gráfico
 function updateChart() {
     const ctx = document.getElementById("chart").getContext("2d");
 
