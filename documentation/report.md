@@ -11,7 +11,12 @@ A organização do projeto segue uma abordagem clara e bem definida:
 ```perl
 sorting-comparison/
 │── documentation/               # Documentação do projeto
+|   ├── images/
+|   |    ├── LogJaeger_1.png      # Imagem da interface do Jaeger com log de traces capturadas
+|   |    ├── LogJaeger.png        # Imagem da interface do Jaeger com log de traces capturadas
+|   |    ├── TabelaComparativaOrdenacao.png       # Tabela e Gráfico da interface do usuário        
 │   ├── report.txt               # Relatório técnico do projeto
+|   ├── traces.json              # Logs do Jaeger
 │
 │── node_modules/                # Dependências do projeto (gerenciado pelo npm)
 │
