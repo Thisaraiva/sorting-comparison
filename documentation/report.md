@@ -132,6 +132,11 @@ O projeto faz uso das seguintes tecnologias para garantir desempenho e escalabil
 
 #### Comandos utilizados para a execução do programa e geração dos logs:
 
+* Pacotes instalados:
+    * `npm init -y`
+    * `npm install express @opentelemetry/api @opentelemetry/sdk-node @opentelemetry/exporter-jaeger @opentelemetry/auto-instrumentations-node fs chart.js worker_threads`
+    * `npm install @opentelemetry/exporter-trace-otlp-http`
+
 * Ativar o Open Telemetry
     * `node src/opentelemetry/telemetry.js`
 * Ativar o Servidor:
