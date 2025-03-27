@@ -236,3 +236,220 @@
 2025-03-18T23:06:47.595Z - Lendo arquivo: src/data/numbers_100000.txt, Algoritmo: quick, Tamanho do conjunto de dados: 100000, Dados lidos: 52832,32357,80230,61715,19831,877,51306,37110,7731..., Números convertidos: 100000 elementos, Tempo de execução: 79ms, Comparações: 1940344, Trocas: 916370
 2025-03-18T23:06:56.727Z - Lendo arquivo: src/data/numbers_100000.txt, Algoritmo: tim, Tamanho do conjunto de dados: 100000, Dados lidos: 52832,32357,80230,61715,19831,877,51306,37110,7731..., Números convertidos: 100000 elementos, Tempo de execução: 88ms, Comparações: 1790854, Trocas: 600267
 2025-03-18T23:07:46.006Z - Lendo arquivo: src/data/numbers_100000.txt, Algoritmo: bubble, Tamanho do conjunto de dados: 100000, Dados lidos: 52832,32357,80230,61715,19831,877,51306,37110,7731..., Números convertidos: 100000 elementos, Tempo de execução: 64046ms, Comparações: 4999950000, Trocas: 2495309627
+2025-03-27T12:02:53.159Z - [INFO] OpenTelemetry SDK inicializado com sucesso {}
+2025-03-27T12:02:53.262Z - [INFO] Servidor rodando na porta 3000 {}
+2025-03-27T12:03:36.174Z - [INFO] Requisição recebida: POST /generate-numbers {}
+2025-03-27T12:03:36.193Z - [INFO] Iniciando geração de números {"requestId":"6c9e75ca-5a44-4634-98a4-bae75ea54e13"}
+2025-03-27T12:03:36.400Z - [INFO] Números gerados com sucesso {"requestId":"6c9e75ca-5a44-4634-98a4-bae75ea54e13"}
+2025-03-27T12:03:41.024Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:03:41.029Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"e0a091af-8395-41c9-978f-f8dca68dc758","requestId":"965dfdd9-ac7a-4dad-ae0a-aaecd7e8f98e"}
+2025-03-27T12:03:41.216Z - [ERROR] Erro na execução {"algorithm":"bubble","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"e0a091af-8395-41c9-978f-f8dca68dc758","requestId":"965dfdd9-ac7a-4dad-ae0a-aaecd7e8f98e"}
+2025-03-27T12:03:52.991Z - [INFO] Requisição recebida: POST /generate-numbers {}
+2025-03-27T12:03:53.005Z - [INFO] Iniciando geração de números {"requestId":"05d98391-5128-4004-942b-74fe37af352b"}
+2025-03-27T12:03:53.150Z - [INFO] Números gerados com sucesso {"requestId":"05d98391-5128-4004-942b-74fe37af352b"}
+2025-03-27T12:03:57.369Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:03:57.373Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"5e7f01cd-56b9-4055-a46e-3c1b06769dda","requestId":"ac9fd427-b051-4028-aca0-0b48472694ee"}
+2025-03-27T12:03:57.491Z - [ERROR] Erro na execução {"algorithm":"bubble","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"5e7f01cd-56b9-4055-a46e-3c1b06769dda","requestId":"ac9fd427-b051-4028-aca0-0b48472694ee"}
+2025-03-27T12:04:02.951Z - [INFO] Requisição recebida: GET /sort/quick/1000 {}
+2025-03-27T12:04:02.956Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"1000","workerId":"df25c134-3346-45ec-bfac-5aacbddcf9d0","requestId":"841f15ba-a318-49f9-91c6-6029a95a8a5b"}
+2025-03-27T12:04:03.092Z - [ERROR] Erro na execução {"algorithm":"quick","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"df25c134-3346-45ec-bfac-5aacbddcf9d0","requestId":"841f15ba-a318-49f9-91c6-6029a95a8a5b"}
+2025-03-27T12:09:03.477Z - [INFO] Requisição recebida: GET /sort/quick/1000 {}
+2025-03-27T12:09:03.481Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"1000","workerId":"b6fbbee5-0ccf-40dd-9e79-9281853fd75a","requestId":"dd36ccce-e4e7-4ce8-9563-a3c3fb9687b0"}
+2025-03-27T12:09:03.595Z - [ERROR] Erro na execução {"algorithm":"quick","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"b6fbbee5-0ccf-40dd-9e79-9281853fd75a","requestId":"dd36ccce-e4e7-4ce8-9563-a3c3fb9687b0"}
+2025-03-27T12:09:12.840Z - [INFO] Requisição recebida: GET /sort/merge/1000 {}
+2025-03-27T12:09:12.845Z - [INFO] Iniciando execução de algoritmo {"algorithm":"merge","size":"1000","workerId":"d17ca5ec-c5f0-48cf-b633-8f3d340247e3","requestId":"1a18e759-b54a-406f-a23b-7d9ad27b942d"}
+2025-03-27T12:09:13.030Z - [ERROR] Erro na execução {"algorithm":"merge","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"d17ca5ec-c5f0-48cf-b633-8f3d340247e3","requestId":"1a18e759-b54a-406f-a23b-7d9ad27b942d"}
+2025-03-27T12:09:20.782Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:09:20.786Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"0885ee0f-c210-4783-84e4-b3b0a3f0588f","requestId":"8975146f-9dc3-40d6-a66e-f8d126021303"}
+2025-03-27T12:09:20.932Z - [ERROR] Erro na execução {"algorithm":"bubble","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"0885ee0f-c210-4783-84e4-b3b0a3f0588f","requestId":"8975146f-9dc3-40d6-a66e-f8d126021303"}
+2025-03-27T12:10:19.613Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:10:19.618Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"33afb2f8-4347-4b10-a4a6-17fac0719b16","requestId":"3d0f9f07-6940-411e-a5ce-c7fcc06c2ba1"}
+2025-03-27T12:10:19.849Z - [ERROR] Erro na execução {"algorithm":"bubble","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"33afb2f8-4347-4b10-a4a6-17fac0719b16","requestId":"3d0f9f07-6940-411e-a5ce-c7fcc06c2ba1"}
+2025-03-27T12:16:26.471Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:16:26.476Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"61fb1981-60e6-4a04-8fbc-1841e6c2b804","requestId":"734795f1-3887-4581-b9c6-e1dbdf16ea70"}
+2025-03-27T12:16:26.623Z - [ERROR] Erro na execução {"algorithm":"bubble","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"61fb1981-60e6-4a04-8fbc-1841e6c2b804","requestId":"734795f1-3887-4581-b9c6-e1dbdf16ea70"}
+2025-03-27T12:17:19.539Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:20.357Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:20.745Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:20.913Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:21.080Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:21.264Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:21.709Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:22.113Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:22.467Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:22.691Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:22.944Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:17:49.582Z - [INFO] OpenTelemetry SDK inicializado com sucesso {}
+2025-03-27T12:17:49.695Z - [INFO] Servidor rodando na porta 3000 {}
+2025-03-27T12:17:55.689Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:17:55.697Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"0dd54f43-a330-4602-b2ac-00c5f9708812","requestId":"aafb6344-48f4-4b2c-8f1c-000ba9c72ab6"}
+2025-03-27T12:17:55.842Z - [ERROR] Erro na execução {"algorithm":"bubble","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"0dd54f43-a330-4602-b2ac-00c5f9708812","requestId":"aafb6344-48f4-4b2c-8f1c-000ba9c72ab6"}
+2025-03-27T12:18:01.085Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:18:01.089Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"07d212f6-de39-4bf8-a8ac-0cd472d40be2","requestId":"1b8ed519-443b-47ac-a01a-f53c018a7463"}
+2025-03-27T12:18:01.257Z - [ERROR] Erro na execução {"algorithm":"bubble","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"07d212f6-de39-4bf8-a8ac-0cd472d40be2","requestId":"1b8ed519-443b-47ac-a01a-f53c018a7463"}
+2025-03-27T12:23:17.814Z - [INFO] Requisição recebida: POST /generate-numbers {}
+2025-03-27T12:23:17.823Z - [INFO] Iniciando geração de números {"requestId":"8bfc89ee-e4d4-49c3-868e-829b4695376f"}
+2025-03-27T12:23:17.992Z - [INFO] Números gerados com sucesso {"requestId":"8bfc89ee-e4d4-49c3-868e-829b4695376f"}
+2025-03-27T12:23:20.486Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:23:20.491Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"d955a40d-00ac-4e49-bcff-7a675d7679ca","requestId":"6a11ea92-30c1-4569-8513-d1ba7e3a1be1"}
+2025-03-27T12:23:20.675Z - [ERROR] Erro na execução {"algorithm":"bubble","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"d955a40d-00ac-4e49-bcff-7a675d7679ca","requestId":"6a11ea92-30c1-4569-8513-d1ba7e3a1be1"}
+2025-03-27T12:26:52.986Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:26:52.993Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"eeec70e2-ea44-48a6-9770-b25cfb33b784","requestId":"272e7a70-4250-4287-afb7-d1c35fb5c458"}
+2025-03-27T12:26:53.289Z - [ERROR] Erro na execução {"algorithm":"bubble","size":"1000","error":"await is only valid in async functions and the top level bodies of modules","workerId":"eeec70e2-ea44-48a6-9770-b25cfb33b784","requestId":"272e7a70-4250-4287-afb7-d1c35fb5c458"}
+2025-03-27T12:33:31.392Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:34:04.568Z - [INFO] OpenTelemetry SDK encerrado {}
+2025-03-27T12:34:24.525Z - [INFO] OpenTelemetry SDK inicializado com sucesso {}
+2025-03-27T12:36:36.795Z - [INFO] OpenTelemetry SDK inicializado com sucesso {}
+2025-03-27T12:36:36.892Z - [INFO] Servidor rodando na porta 3000 {}
+2025-03-27T12:36:59.900Z - [INFO] Requisição recebida: POST /generate-numbers {}
+2025-03-27T12:36:59.913Z - [INFO] Iniciando geração de números {"requestId":"53de8316-7d30-4df3-804b-a0fd989daa99"}
+2025-03-27T12:37:00.089Z - [INFO] Números gerados com sucesso {"requestId":"53de8316-7d30-4df3-804b-a0fd989daa99"}
+2025-03-27T12:37:02.667Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:37:02.672Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"33e450dd-83f7-4c97-8288-b280533b1e29","requestId":"5ca277c6-70d9-4c5f-b683-7aefbff096ff"}
+2025-03-27T12:37:05.051Z - [INFO] Iniciando execução paralela {"algorithm":"bubble","size":"1000","workerId":"33e450dd-83f7-4c97-8288-b280533b1e29","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:37:05.138Z - [INFO] Execução paralela concluída {"algorithm":"bubble","size":"1000","time":31,"comparisons":499500,"swaps":242534,"workerId":"33e450dd-83f7-4c97-8288-b280533b1e29","elementsProcessed":1000}
+2025-03-27T12:37:05.143Z - [INFO] Execução concluída {"algorithm":"bubble","size":"1000","time":31,"comparisons":499500,"swaps":242534,"workerId":"33e450dd-83f7-4c97-8288-b280533b1e29","requestId":"5ca277c6-70d9-4c5f-b683-7aefbff096ff"}
+2025-03-27T12:37:12.296Z - [INFO] Requisição recebida: GET /sort/quick/1000 {}
+2025-03-27T12:37:12.302Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"1000","workerId":"757e2d77-d26e-47d0-b760-14febf5b6045","requestId":"40011e54-1f91-4fb1-a3c7-1c90a4c1e863"}
+2025-03-27T12:37:14.723Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"1000","workerId":"757e2d77-d26e-47d0-b760-14febf5b6045","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:37:14.805Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"1000","time":17,"comparisons":10793,"swaps":5017,"workerId":"757e2d77-d26e-47d0-b760-14febf5b6045","elementsProcessed":1000}
+2025-03-27T12:37:14.811Z - [INFO] Execução concluída {"algorithm":"quick","size":"1000","time":17,"comparisons":10793,"swaps":5017,"workerId":"757e2d77-d26e-47d0-b760-14febf5b6045","requestId":"40011e54-1f91-4fb1-a3c7-1c90a4c1e863"}
+2025-03-27T12:37:19.794Z - [INFO] Requisição recebida: GET /sort/merge/1000 {}
+2025-03-27T12:37:19.799Z - [INFO] Iniciando execução de algoritmo {"algorithm":"merge","size":"1000","workerId":"aed2e5bc-6347-480f-bb11-c4b2130096b8","requestId":"23077089-f2f4-4577-9979-837909fa2cbd"}
+2025-03-27T12:37:22.230Z - [INFO] Iniciando execução paralela {"algorithm":"merge","size":"1000","workerId":"aed2e5bc-6347-480f-bb11-c4b2130096b8","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:37:22.304Z - [INFO] Execução paralela concluída {"algorithm":"merge","size":"1000","time":17,"comparisons":8719,"swaps":9976,"workerId":"aed2e5bc-6347-480f-bb11-c4b2130096b8","elementsProcessed":1000}
+2025-03-27T12:37:22.309Z - [INFO] Execução concluída {"algorithm":"merge","size":"1000","time":17,"comparisons":8719,"swaps":9976,"workerId":"aed2e5bc-6347-480f-bb11-c4b2130096b8","requestId":"23077089-f2f4-4577-9979-837909fa2cbd"}
+2025-03-27T12:37:26.557Z - [INFO] Requisição recebida: GET /sort/heap/1000 {}
+2025-03-27T12:37:26.561Z - [INFO] Iniciando execução de algoritmo {"algorithm":"heap","size":"1000","workerId":"699da706-40d7-48f9-babe-70f43c1c3c4d","requestId":"c33baec2-55d4-401d-b13b-ddc77c494e61"}
+2025-03-27T12:37:29.129Z - [INFO] Iniciando execução paralela {"algorithm":"heap","size":"1000","workerId":"699da706-40d7-48f9-babe-70f43c1c3c4d","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:37:29.212Z - [INFO] Execução paralela concluída {"algorithm":"heap","size":"1000","time":15,"comparisons":19216,"swaps":9108,"workerId":"699da706-40d7-48f9-babe-70f43c1c3c4d","elementsProcessed":1000}
+2025-03-27T12:37:29.217Z - [INFO] Execução concluída {"algorithm":"heap","size":"1000","time":15,"comparisons":19216,"swaps":9108,"workerId":"699da706-40d7-48f9-babe-70f43c1c3c4d","requestId":"c33baec2-55d4-401d-b13b-ddc77c494e61"}
+2025-03-27T12:37:34.129Z - [INFO] Requisição recebida: GET /sort/counting/1000 {}
+2025-03-27T12:37:34.133Z - [INFO] Iniciando execução de algoritmo {"algorithm":"counting","size":"1000","workerId":"e53e2dcd-ace3-47ad-9333-66a1848bcb7e","requestId":"2c7a96ac-0cc6-41b3-9a9d-401a432aba65"}
+2025-03-27T12:37:36.441Z - [INFO] Iniciando execução paralela {"algorithm":"counting","size":"1000","workerId":"e53e2dcd-ace3-47ad-9333-66a1848bcb7e","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:37:36.519Z - [INFO] Execução paralela concluída {"algorithm":"counting","size":"1000","time":17,"comparisons":100965,"swaps":1000,"workerId":"e53e2dcd-ace3-47ad-9333-66a1848bcb7e","elementsProcessed":1000}
+2025-03-27T12:37:36.523Z - [INFO] Execução concluída {"algorithm":"counting","size":"1000","time":17,"comparisons":100965,"swaps":1000,"workerId":"e53e2dcd-ace3-47ad-9333-66a1848bcb7e","requestId":"2c7a96ac-0cc6-41b3-9a9d-401a432aba65"}
+2025-03-27T12:37:43.931Z - [INFO] Requisição recebida: GET /sort/insertion/1000 {}
+2025-03-27T12:37:43.935Z - [INFO] Iniciando execução de algoritmo {"algorithm":"insertion","size":"1000","workerId":"149c093e-953f-4ec1-b783-3f31e0e7d9ae","requestId":"440ab4f1-f451-453d-9686-033633189f61"}
+2025-03-27T12:37:46.014Z - [INFO] Iniciando execução paralela {"algorithm":"insertion","size":"1000","workerId":"149c093e-953f-4ec1-b783-3f31e0e7d9ae","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:37:46.095Z - [INFO] Execução paralela concluída {"algorithm":"insertion","size":"1000","time":17,"comparisons":243533,"swaps":242534,"workerId":"149c093e-953f-4ec1-b783-3f31e0e7d9ae","elementsProcessed":1000}
+2025-03-27T12:37:46.101Z - [INFO] Execução concluída {"algorithm":"insertion","size":"1000","time":17,"comparisons":243533,"swaps":242534,"workerId":"149c093e-953f-4ec1-b783-3f31e0e7d9ae","requestId":"440ab4f1-f451-453d-9686-033633189f61"}
+2025-03-27T12:37:51.211Z - [INFO] Requisição recebida: GET /sort/tim/1000 {}
+2025-03-27T12:37:51.215Z - [INFO] Iniciando execução de algoritmo {"algorithm":"tim","size":"1000","workerId":"ed8f9daf-35f2-4485-91ef-7b0f8c8dac36","requestId":"01f92362-5540-44ae-a057-edd562bc6efa"}
+2025-03-27T12:37:54.264Z - [INFO] Iniciando execução paralela {"algorithm":"tim","size":"1000","workerId":"ed8f9daf-35f2-4485-91ef-7b0f8c8dac36","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:37:54.345Z - [INFO] Execução paralela concluída {"algorithm":"tim","size":"1000","time":18,"comparisons":12722,"swaps":7783,"workerId":"ed8f9daf-35f2-4485-91ef-7b0f8c8dac36","elementsProcessed":1000}
+2025-03-27T12:37:54.351Z - [INFO] Execução concluída {"algorithm":"tim","size":"1000","time":18,"comparisons":12722,"swaps":7783,"workerId":"ed8f9daf-35f2-4485-91ef-7b0f8c8dac36","requestId":"01f92362-5540-44ae-a057-edd562bc6efa"}
+2025-03-27T12:38:02.072Z - [INFO] Requisição recebida: GET /sort/bubble-improved/1000 {}
+2025-03-27T12:38:02.075Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble-improved","size":"1000","workerId":"0cedf1ea-984d-4002-be52-ae475ac4e5d2","requestId":"ece149e6-0fca-4ab5-87e3-ba96ef4079dc"}
+2025-03-27T12:38:03.942Z - [INFO] Iniciando execução paralela {"algorithm":"bubble-improved","size":"1000","workerId":"0cedf1ea-984d-4002-be52-ae475ac4e5d2","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:38:04.016Z - [INFO] Execução paralela concluída {"algorithm":"bubble-improved","size":"1000","time":20,"comparisons":497222,"swaps":242534,"workerId":"0cedf1ea-984d-4002-be52-ae475ac4e5d2","elementsProcessed":1000}
+2025-03-27T12:38:04.020Z - [INFO] Execução concluída {"algorithm":"bubble-improved","size":"1000","time":20,"comparisons":497222,"swaps":242534,"workerId":"0cedf1ea-984d-4002-be52-ae475ac4e5d2","requestId":"ece149e6-0fca-4ab5-87e3-ba96ef4079dc"}
+2025-03-27T12:38:14.971Z - [INFO] Requisição recebida: GET /sort/selection/1000 {}
+2025-03-27T12:38:14.974Z - [INFO] Iniciando execução de algoritmo {"algorithm":"selection","size":"1000","workerId":"16ccd58e-c65e-4426-9e1b-bdf22a0d2902","requestId":"c3ef9cb6-87e3-495a-9149-21ee20877387"}
+2025-03-27T12:38:17.412Z - [INFO] Iniciando execução paralela {"algorithm":"selection","size":"1000","workerId":"16ccd58e-c65e-4426-9e1b-bdf22a0d2902","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:38:17.495Z - [INFO] Execução paralela concluída {"algorithm":"selection","size":"1000","time":21,"comparisons":499500,"swaps":991,"workerId":"16ccd58e-c65e-4426-9e1b-bdf22a0d2902","elementsProcessed":1000}
+2025-03-27T12:38:17.500Z - [INFO] Execução concluída {"algorithm":"selection","size":"1000","time":21,"comparisons":499500,"swaps":991,"workerId":"16ccd58e-c65e-4426-9e1b-bdf22a0d2902","requestId":"c3ef9cb6-87e3-495a-9149-21ee20877387"}
+2025-03-27T12:38:31.246Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:38:31.249Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"7c100cb3-5183-4be6-8d3f-588326e25c59","requestId":"2f904ef0-61bc-4763-94af-0beec6b34937"}
+2025-03-27T12:38:33.507Z - [INFO] Iniciando execução paralela {"algorithm":"bubble","size":"1000","workerId":"7c100cb3-5183-4be6-8d3f-588326e25c59","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:38:33.591Z - [INFO] Execução paralela concluída {"algorithm":"bubble","size":"1000","time":23,"comparisons":499500,"swaps":242534,"workerId":"7c100cb3-5183-4be6-8d3f-588326e25c59","elementsProcessed":1000}
+2025-03-27T12:38:33.595Z - [INFO] Execução concluída {"algorithm":"bubble","size":"1000","time":23,"comparisons":499500,"swaps":242534,"workerId":"7c100cb3-5183-4be6-8d3f-588326e25c59","requestId":"2f904ef0-61bc-4763-94af-0beec6b34937"}
+2025-03-27T12:38:37.813Z - [INFO] Requisição recebida: POST /generate-numbers {}
+2025-03-27T12:38:37.816Z - [INFO] Iniciando geração de números {"requestId":"58ef49af-2361-4549-b072-f90f431e849d"}
+2025-03-27T12:38:38.056Z - [INFO] Números gerados com sucesso {"requestId":"58ef49af-2361-4549-b072-f90f431e849d"}
+2025-03-27T12:38:42.133Z - [INFO] Requisição recebida: GET /sort/bubble/1000 {}
+2025-03-27T12:38:42.136Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"1000","workerId":"1c3429a1-a17c-4260-91d7-67e8a2b3a836","requestId":"db405fe6-f706-4f0f-8475-d788608038a4"}
+2025-03-27T12:38:44.514Z - [INFO] Iniciando execução paralela {"algorithm":"bubble","size":"1000","workerId":"1c3429a1-a17c-4260-91d7-67e8a2b3a836","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:38:44.612Z - [INFO] Execução paralela concluída {"algorithm":"bubble","size":"1000","time":33,"comparisons":499500,"swaps":258939,"workerId":"1c3429a1-a17c-4260-91d7-67e8a2b3a836","elementsProcessed":1000}
+2025-03-27T12:38:44.617Z - [INFO] Execução concluída {"algorithm":"bubble","size":"1000","time":33,"comparisons":499500,"swaps":258939,"workerId":"1c3429a1-a17c-4260-91d7-67e8a2b3a836","requestId":"db405fe6-f706-4f0f-8475-d788608038a4"}
+2025-03-27T12:38:52.250Z - [INFO] Requisição recebida: GET /sort/quick/1000 {}
+2025-03-27T12:38:52.255Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"1000","workerId":"6ded0994-4916-45d2-af93-d138a0f8d44a","requestId":"47f5055f-3875-4ee4-a3a3-4d53cea1e0b7"}
+2025-03-27T12:38:54.472Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"1000","workerId":"6ded0994-4916-45d2-af93-d138a0f8d44a","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:38:54.552Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"1000","time":15,"comparisons":10149,"swaps":4487,"workerId":"6ded0994-4916-45d2-af93-d138a0f8d44a","elementsProcessed":1000}
+2025-03-27T12:38:54.556Z - [INFO] Execução concluída {"algorithm":"quick","size":"1000","time":15,"comparisons":10149,"swaps":4487,"workerId":"6ded0994-4916-45d2-af93-d138a0f8d44a","requestId":"47f5055f-3875-4ee4-a3a3-4d53cea1e0b7"}
+2025-03-27T12:39:19.039Z - [INFO] Requisição recebida: GET /sort/quick/1000 {}
+2025-03-27T12:39:19.047Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"1000","workerId":"9929441e-79d5-4bb9-806e-d1c534d9e44f","requestId":"4fe8093a-ce32-4299-8f41-56e348fc5484"}
+2025-03-27T12:39:21.229Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"1000","workerId":"9929441e-79d5-4bb9-806e-d1c534d9e44f","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:39:21.277Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"1000","time":9,"comparisons":10149,"swaps":4487,"workerId":"9929441e-79d5-4bb9-806e-d1c534d9e44f","elementsProcessed":1000}
+2025-03-27T12:39:21.280Z - [INFO] Execução concluída {"algorithm":"quick","size":"1000","time":9,"comparisons":10149,"swaps":4487,"workerId":"9929441e-79d5-4bb9-806e-d1c534d9e44f","requestId":"4fe8093a-ce32-4299-8f41-56e348fc5484"}
+2025-03-27T12:40:00.595Z - [INFO] Requisição recebida: GET /sort/quick/1000 {}
+2025-03-27T12:40:00.599Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"1000","workerId":"cdfae75c-b55a-49a2-a7a6-dd48a48baa3f","requestId":"d512ddeb-7638-4b2e-b29c-5441070d217c"}
+2025-03-27T12:40:02.782Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"1000","workerId":"cdfae75c-b55a-49a2-a7a6-dd48a48baa3f","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:40:02.836Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"1000","time":11,"comparisons":10149,"swaps":4487,"workerId":"cdfae75c-b55a-49a2-a7a6-dd48a48baa3f","elementsProcessed":1000}
+2025-03-27T12:40:02.840Z - [INFO] Execução concluída {"algorithm":"quick","size":"1000","time":11,"comparisons":10149,"swaps":4487,"workerId":"cdfae75c-b55a-49a2-a7a6-dd48a48baa3f","requestId":"d512ddeb-7638-4b2e-b29c-5441070d217c"}
+2025-03-27T12:40:05.767Z - [INFO] Requisição recebida: GET /sort/quick/1000 {}
+2025-03-27T12:40:05.771Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"1000","workerId":"5e82f56a-9f71-451c-92a9-0a2749820413","requestId":"6d5b6a5c-fa63-4936-9e72-2c5112e71f6f"}
+2025-03-27T12:40:08.263Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"1000","workerId":"5e82f56a-9f71-451c-92a9-0a2749820413","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:40:08.357Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"1000","time":19,"comparisons":10149,"swaps":4487,"workerId":"5e82f56a-9f71-451c-92a9-0a2749820413","elementsProcessed":1000}
+2025-03-27T12:40:08.365Z - [INFO] Execução concluída {"algorithm":"quick","size":"1000","time":19,"comparisons":10149,"swaps":4487,"workerId":"5e82f56a-9f71-451c-92a9-0a2749820413","requestId":"6d5b6a5c-fa63-4936-9e72-2c5112e71f6f"}
+2025-03-27T12:40:10.499Z - [INFO] Requisição recebida: GET /sort/quick/1000 {}
+2025-03-27T12:40:10.503Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"1000","workerId":"60c1ec35-c32e-4a31-8e1b-07b03a7c1652","requestId":"dee387f1-de46-436e-8234-3d018e22d74c"}
+2025-03-27T12:40:13.011Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"1000","workerId":"60c1ec35-c32e-4a31-8e1b-07b03a7c1652","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:40:13.088Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"1000","time":17,"comparisons":10149,"swaps":4487,"workerId":"60c1ec35-c32e-4a31-8e1b-07b03a7c1652","elementsProcessed":1000}
+2025-03-27T12:40:13.093Z - [INFO] Execução concluída {"algorithm":"quick","size":"1000","time":17,"comparisons":10149,"swaps":4487,"workerId":"60c1ec35-c32e-4a31-8e1b-07b03a7c1652","requestId":"dee387f1-de46-436e-8234-3d018e22d74c"}
+2025-03-27T12:45:09.641Z - [INFO] Requisição recebida: GET /sort/quick/100000 {}
+2025-03-27T12:45:09.645Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"100000","workerId":"ebb5e263-f9f2-4fbd-bdd2-c40a7aa3d95d","requestId":"30e9c63a-5510-44e1-b6c8-a5d4f5da040e"}
+2025-03-27T12:45:11.799Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"100000","workerId":"ebb5e263-f9f2-4fbd-bdd2-c40a7aa3d95d","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
+2025-03-27T12:45:12.329Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"100000","time":427,"comparisons":null,"swaps":null,"workerId":"ebb5e263-f9f2-4fbd-bdd2-c40a7aa3d95d","elementsProcessed":100000}
+2025-03-27T12:45:12.334Z - [INFO] Execução concluída {"algorithm":"quick","size":"100000","time":427,"comparisons":null,"swaps":null,"workerId":"ebb5e263-f9f2-4fbd-bdd2-c40a7aa3d95d","requestId":"30e9c63a-5510-44e1-b6c8-a5d4f5da040e"}
+2025-03-27T12:45:24.561Z - [INFO] Requisição recebida: GET /sort/bubble/100000 {}
+2025-03-27T12:45:24.564Z - [INFO] Iniciando execução de algoritmo {"algorithm":"bubble","size":"100000","workerId":"28241f56-8910-4850-bfa2-3889297cb857","requestId":"546ba8c7-5d94-4327-8a8b-3d56eaa0784a"}
+2025-03-27T12:45:27.158Z - [INFO] Iniciando execução paralela {"algorithm":"bubble","size":"100000","workerId":"28241f56-8910-4850-bfa2-3889297cb857","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
+2025-03-27T12:45:37.450Z - [INFO] Requisição recebida: GET /sort/merge/100000 {}
+2025-03-27T12:45:37.453Z - [INFO] Iniciando execução de algoritmo {"algorithm":"merge","size":"100000","workerId":"e78683c5-d55d-4983-812f-db41a43ac8f0","requestId":"b28e3ca8-6f8c-46db-bb13-bd6d973061ec"}
+2025-03-27T12:45:39.689Z - [INFO] Iniciando execução paralela {"algorithm":"merge","size":"100000","workerId":"e78683c5-d55d-4983-812f-db41a43ac8f0","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
+2025-03-27T12:45:39.914Z - [ERROR] Erro na execução {"algorithm":"merge","size":"100000","error":"Cannot find module 'C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\algorithms\\mergeSortWorker.js'","workerId":"e78683c5-d55d-4983-812f-db41a43ac8f0","requestId":"b28e3ca8-6f8c-46db-bb13-bd6d973061ec"}
+2025-03-27T12:45:51.034Z - [INFO] Requisição recebida: GET /sort/merge/100000 {}
+2025-03-27T12:45:51.037Z - [INFO] Iniciando execução de algoritmo {"algorithm":"merge","size":"100000","workerId":"6d020995-a33b-43a1-b662-d43e199b1ee3","requestId":"e6b9e4b4-0543-410e-aabc-36c3db083d00"}
+2025-03-27T12:45:53.178Z - [INFO] Iniciando execução paralela {"algorithm":"merge","size":"100000","workerId":"6d020995-a33b-43a1-b662-d43e199b1ee3","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
+2025-03-27T12:45:53.417Z - [ERROR] Erro na execução {"algorithm":"merge","size":"100000","error":"Cannot find module 'C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\algorithms\\mergeSortWorker.js'","workerId":"6d020995-a33b-43a1-b662-d43e199b1ee3","requestId":"e6b9e4b4-0543-410e-aabc-36c3db083d00"}
+2025-03-27T12:45:57.911Z - [INFO] Requisição recebida: GET /sort/heap/100000 {}
+2025-03-27T12:45:57.915Z - [INFO] Iniciando execução de algoritmo {"algorithm":"heap","size":"100000","workerId":"d27655ab-fcae-4128-bf81-76f72d052888","requestId":"1f253d1d-ec64-414d-90b2-4b93933572d9"}
+2025-03-27T12:46:00.085Z - [INFO] Iniciando execução paralela {"algorithm":"heap","size":"100000","workerId":"d27655ab-fcae-4128-bf81-76f72d052888","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
+2025-03-27T12:46:00.332Z - [INFO] Execução paralela concluída {"algorithm":"heap","size":"100000","time":139,"comparisons":3249922,"swaps":1574961,"workerId":"d27655ab-fcae-4128-bf81-76f72d052888","elementsProcessed":100000}
+2025-03-27T12:46:00.338Z - [INFO] Execução concluída {"algorithm":"heap","size":"100000","time":139,"comparisons":3249922,"swaps":1574961,"workerId":"d27655ab-fcae-4128-bf81-76f72d052888","requestId":"1f253d1d-ec64-414d-90b2-4b93933572d9"}
+2025-03-27T12:46:29.697Z - [INFO] Requisição recebida: GET /sort/tim/100000 {}
+2025-03-27T12:46:29.700Z - [INFO] Iniciando execução de algoritmo {"algorithm":"tim","size":"100000","workerId":"6ffbe8de-6ca5-405b-b0f0-365a5a8be262","requestId":"075dfa1a-1e54-4431-aafb-70c8f44f7931"}
+2025-03-27T12:46:31.861Z - [INFO] Iniciando execução paralela {"algorithm":"tim","size":"100000","workerId":"6ffbe8de-6ca5-405b-b0f0-365a5a8be262","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
+2025-03-27T12:46:31.915Z - [INFO] Execução paralela concluída {"algorithm":"bubble","size":"100000","time":64618,"comparisons":4999950000,"swaps":2501970222,"workerId":"28241f56-8910-4850-bfa2-3889297cb857","elementsProcessed":100000}
+2025-03-27T12:46:31.920Z - [INFO] Execução concluída {"algorithm":"bubble","size":"100000","time":64618,"comparisons":4999950000,"swaps":2501970222,"workerId":"28241f56-8910-4850-bfa2-3889297cb857","requestId":"546ba8c7-5d94-4327-8a8b-3d56eaa0784a"}
+2025-03-27T12:46:32.065Z - [INFO] Execução paralela concluída {"algorithm":"tim","size":"100000","time":86,"comparisons":1791631,"swaps":600907,"workerId":"6ffbe8de-6ca5-405b-b0f0-365a5a8be262","elementsProcessed":100000}
+2025-03-27T12:46:32.070Z - [INFO] Execução concluída {"algorithm":"tim","size":"100000","time":86,"comparisons":1791631,"swaps":600907,"workerId":"6ffbe8de-6ca5-405b-b0f0-365a5a8be262","requestId":"075dfa1a-1e54-4431-aafb-70c8f44f7931"}
+2025-03-27T12:47:11.745Z - [INFO] Requisição recebida: GET /sort/merge/100000 {}
+2025-03-27T12:47:11.748Z - [INFO] Iniciando execução de algoritmo {"algorithm":"merge","size":"100000","workerId":"8cefec41-9d52-4eed-9c42-43e63ffeb879","requestId":"50bc1378-ec9a-42ab-920c-e6a249c0d475"}
+2025-03-27T12:47:14.445Z - [INFO] Iniciando execução paralela {"algorithm":"merge","size":"100000","workerId":"8cefec41-9d52-4eed-9c42-43e63ffeb879","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
+2025-03-27T12:47:14.647Z - [ERROR] Erro na execução {"algorithm":"merge","size":"100000","error":"Cannot find module 'C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\algorithms\\mergeSortWorker.js'","workerId":"8cefec41-9d52-4eed-9c42-43e63ffeb879","requestId":"50bc1378-ec9a-42ab-920c-e6a249c0d475"}
+2025-03-27T12:47:18.109Z - [INFO] Requisição recebida: GET /sort/merge/10000 {}
+2025-03-27T12:47:18.112Z - [INFO] Iniciando execução de algoritmo {"algorithm":"merge","size":"10000","workerId":"014865a3-10be-4679-8e35-fef359f5b746","requestId":"bf5219e7-29f9-436f-9fe1-915bf88187b6"}
+2025-03-27T12:47:20.118Z - [INFO] Iniciando execução paralela {"algorithm":"merge","size":"10000","workerId":"014865a3-10be-4679-8e35-fef359f5b746","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_10000.txt"}
+2025-03-27T12:47:20.217Z - [INFO] Execução paralela concluída {"algorithm":"merge","size":"10000","time":37,"comparisons":120547,"swaps":133616,"workerId":"014865a3-10be-4679-8e35-fef359f5b746","elementsProcessed":10000}
+2025-03-27T12:47:20.222Z - [INFO] Execução concluída {"algorithm":"merge","size":"10000","time":37,"comparisons":120547,"swaps":133616,"workerId":"014865a3-10be-4679-8e35-fef359f5b746","requestId":"bf5219e7-29f9-436f-9fe1-915bf88187b6"}
+2025-03-27T12:48:06.167Z - [INFO] Requisição recebida: GET /sort/quick/1000 {}
+2025-03-27T12:48:06.170Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"1000","workerId":"036b2aac-2c56-4074-addf-e0c5a8ca1add","requestId":"af945838-7841-4999-ac6e-7f599d97594b"}
+2025-03-27T12:48:08.409Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"1000","workerId":"036b2aac-2c56-4074-addf-e0c5a8ca1add","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:48:08.484Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"1000","time":17,"comparisons":10149,"swaps":4487,"workerId":"036b2aac-2c56-4074-addf-e0c5a8ca1add","elementsProcessed":1000}
+2025-03-27T12:48:08.489Z - [INFO] Execução concluída {"algorithm":"quick","size":"1000","time":17,"comparisons":10149,"swaps":4487,"workerId":"036b2aac-2c56-4074-addf-e0c5a8ca1add","requestId":"af945838-7841-4999-ac6e-7f599d97594b"}
+2025-03-27T12:48:11.301Z - [INFO] Requisição recebida: GET /sort/merge/1000 {}
+2025-03-27T12:48:11.305Z - [INFO] Iniciando execução de algoritmo {"algorithm":"merge","size":"1000","workerId":"002d4283-ba46-4f3e-8698-fe85df567ca9","requestId":"d073b0fc-d358-42da-9f2b-2662fc07cea0"}
+2025-03-27T12:48:13.587Z - [INFO] Iniciando execução paralela {"algorithm":"merge","size":"1000","workerId":"002d4283-ba46-4f3e-8698-fe85df567ca9","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-27T12:48:13.664Z - [INFO] Execução paralela concluída {"algorithm":"merge","size":"1000","time":16,"comparisons":8718,"swaps":9976,"workerId":"002d4283-ba46-4f3e-8698-fe85df567ca9","elementsProcessed":1000}
+2025-03-27T12:48:13.668Z - [INFO] Execução concluída {"algorithm":"merge","size":"1000","time":16,"comparisons":8718,"swaps":9976,"workerId":"002d4283-ba46-4f3e-8698-fe85df567ca9","requestId":"d073b0fc-d358-42da-9f2b-2662fc07cea0"}
+2025-03-27T12:48:19.269Z - [INFO] Requisição recebida: GET /sort/quick/10000 {}
+2025-03-27T12:48:19.272Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"10000","workerId":"efaac446-fad1-463a-98ae-c2402f7071b8","requestId":"d76b18ca-d4b1-4925-9739-118d12a52d68"}
+2025-03-27T12:48:21.834Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"10000","workerId":"efaac446-fad1-463a-98ae-c2402f7071b8","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_10000.txt"}
+2025-03-27T12:48:21.945Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"10000","time":41,"comparisons":170954,"swaps":81926,"workerId":"efaac446-fad1-463a-98ae-c2402f7071b8","elementsProcessed":10000}
+2025-03-27T12:48:21.951Z - [INFO] Execução concluída {"algorithm":"quick","size":"10000","time":41,"comparisons":170954,"swaps":81926,"workerId":"efaac446-fad1-463a-98ae-c2402f7071b8","requestId":"d76b18ca-d4b1-4925-9739-118d12a52d68"}
+2025-03-27T12:48:22.142Z - [INFO] Requisição recebida: GET /sort/merge/10000 {}
+2025-03-27T12:48:22.145Z - [INFO] Iniciando execução de algoritmo {"algorithm":"merge","size":"10000","workerId":"04dfa31d-6099-406d-97f3-112a46d6d11c","requestId":"dd5e1c35-b2a8-4e9e-953a-4c0a2558b10c"}
+2025-03-27T12:48:24.772Z - [INFO] Iniciando execução paralela {"algorithm":"merge","size":"10000","workerId":"04dfa31d-6099-406d-97f3-112a46d6d11c","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_10000.txt"}
+2025-03-27T12:48:24.980Z - [INFO] Execução paralela concluída {"algorithm":"merge","size":"10000","time":73,"comparisons":120547,"swaps":133616,"workerId":"04dfa31d-6099-406d-97f3-112a46d6d11c","elementsProcessed":10000}
+2025-03-27T12:48:24.991Z - [INFO] Execução concluída {"algorithm":"merge","size":"10000","time":73,"comparisons":120547,"swaps":133616,"workerId":"04dfa31d-6099-406d-97f3-112a46d6d11c","requestId":"dd5e1c35-b2a8-4e9e-953a-4c0a2558b10c"}
+2025-03-27T12:48:28.866Z - [INFO] Requisição recebida: GET /sort/quick/100000 {}
+2025-03-27T12:48:28.869Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"100000","workerId":"a09ae917-0776-42b3-aa5a-433a28d48fee","requestId":"43b247e6-ca74-42b6-9ef9-586d16c3494b"}
+2025-03-27T12:48:31.131Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"100000","workerId":"a09ae917-0776-42b3-aa5a-433a28d48fee","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
+2025-03-27T12:48:31.687Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"100000","time":441,"comparisons":null,"swaps":null,"workerId":"a09ae917-0776-42b3-aa5a-433a28d48fee","elementsProcessed":100000}
+2025-03-27T12:48:31.691Z - [INFO] Execução concluída {"algorithm":"quick","size":"100000","time":441,"comparisons":null,"swaps":null,"workerId":"a09ae917-0776-42b3-aa5a-433a28d48fee","requestId":"43b247e6-ca74-42b6-9ef9-586d16c3494b"}
+2025-03-27T12:48:55.127Z - [INFO] Requisição recebida: GET /sort/merge/100000 {}
+2025-03-27T12:48:55.131Z - [INFO] Iniciando execução de algoritmo {"algorithm":"merge","size":"100000","workerId":"bc26290a-0ec3-4c65-ae5b-a80a690a738e","requestId":"92aca4fe-88a3-4b47-b970-05dfc0f275d9"}
+2025-03-27T12:48:57.240Z - [INFO] Iniciando execução paralela {"algorithm":"merge","size":"100000","workerId":"bc26290a-0ec3-4c65-ae5b-a80a690a738e","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
+2025-03-27T12:48:57.481Z - [ERROR] Erro na execução {"algorithm":"merge","size":"100000","error":"Cannot find module 'C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\algorithms\\mergeSortWorker.js'","workerId":"bc26290a-0ec3-4c65-ae5b-a80a690a738e","requestId":"92aca4fe-88a3-4b47-b970-05dfc0f275d9"}
