@@ -1,136 +1,133 @@
-// src/algorithms/mergeSort.js
-const { Worker } = require('worker_threads');
-const os = require('os');
-const SortStrategy = require("./strategy");
+const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
 const { trace } = require('@opentelemetry/api');
 const tracer = trace.getTracer('sorting-app');
 
-class MergeSort extends SortStrategy {
-    sort(array) {
-        return tracer.startActiveSpan('mergeSort.sort', span => {
-            let comparisons = 0;
-            let swaps = 0;
-            const maxSubArraySizeForParallel = 15000; // Ajuste conforme necessidade
-            const numCores = os.cpus().length;
-            const activeWorkers = new Set();
+class MergeSort {
+    constructor() {
+        this.maxSubArraySizeForParallel = 50000;
+    }
 
-            const merge = (left, right) => {
-                let result = [];
-                let i = 0, j = 0;
-                while (i < left.length && j < right.length) {
-                    comparisons++;
-                    if (left[i] <= right[j]) {
-                        result.push(left[i++]);
-                        swaps++;
-                    } else {
-                        result.push(right[j++]);
-                        swaps++;
-                    }
-                }
-                while (i < left.length) {
-                    result.push(left[i++]);
-                    swaps++;
-                }
-                while (j < right.length) {
-                    result.push(right[j++]);
-                    swaps++;
-                }
-                return result;
-            };
-
-            const mergeSortParallel = (arr) => {
-                if (arr.length <= 1) {
-                    return Promise.resolve(arr);
-                }
-
-                const mid = Math.floor(arr.length / 2);
-                const left = arr.slice(0, mid);
-                const right = arr.slice(mid);
-
-                if (arr.length > maxSubArraySizeForParallel && activeWorkers.size < numCores) {
-                    const workerPromise1 = new Promise(resolve => {
-                        tracer.startActiveSpan('mergeSort.parallel.worker', workerSpan => {
-                            const worker = new Worker(__filename, { workerData: { subArray: left, isWorker: true } });
-                            activeWorkers.add(worker);
-                            worker.on('message', resolve);
-                            worker.on('error', (err) => {
-                                console.error('Worker error:', err);
-                                workerSpan.recordException(err);
-                                workerSpan.end();
-                                resolve(left);
-                            });
-                            worker.on('exit', (code) => {
-                                if (code !== 0) {
-                                    console.error(`Worker parou com código ${code}`);
-                                    workerSpan.setAttributes({ 'worker.exitCode': code });
-                                    workerSpan.end();
-                                    resolve(left);
-                                }
-                            });
-                        });
-                    });
-
-                    const workerPromise2 = new Promise(resolve => {
-                        tracer.startActiveSpan('mergeSort.parallel.worker', workerSpan => {
-                            const worker = new Worker(__filename, { workerData: { subArray: right, isWorker: true } });
-                            activeWorkers.add(worker);
-                            worker.on('message', resolve);
-                            worker.on('error', (err) => {
-                                console.error('Worker error:', err);
-                                workerSpan.recordException(err);
-                                workerSpan.end();
-                                resolve(right);
-                            });
-                            worker.on('exit', (code) => {
-                                if (code !== 0) {
-                                    console.error(`Worker parou com código ${code}`);
-                                    workerSpan.setAttributes({ 'worker.exitCode': code });
-                                    workerSpan.end();
-                                    resolve(right);
-                                }
-                            });
-                        });
-                    });
-
-                    return Promise.all([workerPromise1, workerPromise2])
-                        .then(([sortedLeft, sortedRight]) => {
-                            activeWorkers.clear();
-                            const merged = merge(sortedLeft, sortedRight);
-                            swaps += merged.length; // Aproximação de swaps
-                            return merged;
-                        });
-                } else {
-                    return Promise.all([mergeSortParallel(left), mergeSortParallel(right)])
-                        .then(([sortedLeft, sortedRight]) => {
-                            const merged = merge(sortedLeft, sortedRight);
-                            swaps += merged.length; // Aproximação de swaps
-                            return merged;
-                        });
-                }
-            };
-
-            return mergeSortParallel(array)
-                .then(sortedArray => {
-                    span.setAttributes({ 'algorithm.comparisons': comparisons, 'algorithm.swaps': swaps });
-                    span.end();
-                    return { sortedArray, comparisons, swaps };
-                })
-                .catch(err => {
-                    span.recordException(err);
-                    span.end();
-                    throw err;
+    async sort(array, options = {}) {
+        return tracer.startActiveSpan('mergeSort.sort', async span => {
+            try {
+                span.setAttributes({
+                    'algorithm.name': 'mergeSort',
+                    'array.size': array.length,
+                    'parallel.enabled': options.parallel || false
                 });
+
+                const result = await this.mergeSort(array, options);
+                span.setAttributes({
+                    'algorithm.comparisons': result.comparisons,
+                    'algorithm.swaps': result.swaps
+                });
+                return result;
+            } catch (error) {
+                span.recordException(error);
+                throw error;
+            } finally {
+                span.end();
+            }
+        });
+    }
+
+    async mergeSort(array, options, depth = 0) {
+        if (array.length <= 1) {
+            return { sortedArray: array, comparisons: 0, swaps: 0 };
+        }
+
+        const mid = Math.floor(array.length / 2);
+        const left = array.slice(0, mid);
+        const right = array.slice(mid);
+
+        let leftResult, rightResult;
+
+        if (options.parallel && array.length > this.maxSubArraySizeForParallel && depth < 2) {
+            [leftResult, rightResult] = await Promise.all([
+                this.runInWorker(left, options, depth + 1),
+                this.mergeSort(right, options, depth + 1)
+            ]);
+        } else {
+            [leftResult, rightResult] = await Promise.all([
+                this.mergeSort(left, options, depth + 1),
+                this.mergeSort(right, options, depth + 1)
+            ]);
+        }
+
+        const merged = this.merge(leftResult.sortedArray, rightResult.sortedArray);
+        
+        return {
+            sortedArray: merged.sortedArray,
+            comparisons: leftResult.comparisons + rightResult.comparisons + merged.comparisons,
+            swaps: leftResult.swaps + rightResult.swaps + merged.swaps
+        };
+    }
+
+    merge(left, right) {
+        let result = [];
+        let i = 0, j = 0;
+        let comparisons = 0;
+        let swaps = 0;
+
+        while (i < left.length && j < right.length) {
+            comparisons++;
+            if (left[i] <= right[j]) {
+                result.push(left[i++]);
+                swaps++;
+            } else {
+                result.push(right[j++]);
+                swaps++;
+            }
+        }
+
+        while (i < left.length) {
+            result.push(left[i++]);
+            swaps++;
+        }
+
+        while (j < right.length) {
+            result.push(right[j++]);
+            swaps++;
+        }
+
+        return { sortedArray: result, comparisons, swaps };
+    }
+
+    runInWorker(array, options, depth) {
+        return new Promise((resolve, reject) => {
+            const workerCode = `
+                const { parentPort, workerData } = require('worker_threads');
+                const { MergeSort } = require('./mergeSort');
+                const sorter = new MergeSort();
+                sorter.sort(workerData.array, workerData.options)
+                    .then(result => parentPort.postMessage(result))
+                    .catch(error => parentPort.postMessage({ error: error.message }));
+            `;
+
+            const worker = new Worker(workerCode, {
+                eval: true,
+                workerData: {
+                    array,
+                    options: { ...options, parallel: false } // Desativa paralelismo dentro do worker
+                }
+            });
+
+            worker.on('message', (result) => {
+                if (result.error) {
+                    reject(new Error(result.error));
+                } else {
+                    resolve(result);
+                }
+            });
+
+            worker.on('error', reject);
+            worker.on('exit', (code) => {
+                if (code !== 0) {
+                    reject(new Error(`Worker stopped with exit code ${code}`));
+                }
+            });
         });
     }
 }
 
-// Execução dentro do worker
-if (module.parent) {
-    module.exports = MergeSort;
-} else if (workerData && workerData.isWorker) {
-    const { workerData, parentPort } = require('worker_threads');
-    const sorter = new MergeSort();
-    sorter.sort(workerData.subArray).then(result => parentPort.postMessage(result));
-} else {
-    module.exports = MergeSort;
-}
+module.exports = MergeSort;

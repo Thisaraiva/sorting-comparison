@@ -1,132 +1,113 @@
-// src/algorithms/quickSort.js
-const { Worker } = require('worker_threads');
+const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
 const os = require('os');
-const SortStrategy = require("./strategy");
 const { trace } = require('@opentelemetry/api');
 const tracer = trace.getTracer('sorting-app');
 
-class QuickSort extends SortStrategy {
-    sort(array) {
-        return tracer.startActiveSpan('quickSort.sort', span => {
-            let comparisons = 0;
-            let swaps = 0;
-            const maxSubArraySizeForParallel = 100000; // Ajuste conforme necessidade
-            const numCores = os.cpus().length;
-            const activeWorkers = new Set();
-            const workerPromises = [];
+class QuickSort {
+    constructor() {
+        this.maxSubArraySizeForParallel = 20000;
+        this.numCores = os.cpus().length;
+    }
 
-            const partition = (arr, low, high) => {
-                const pivot = arr[high];
-                let i = low - 1;
-                for (let j = low; j < high; j++) {
-                    comparisons++;
-                    if (arr[j] < pivot) {
-                        i++;
-                        [arr[i], arr[j]] = [arr[j], arr[i]];
-                        swaps++;
-                    }
-                }
-                [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
-                swaps++;
-                return i + 1;
-            };
-
-            const quickSortParallel = (arr, low, high) => {
-                if (low < high) {
-                    const size = high - low + 1;
-                    if (size > maxSubArraySizeForParallel && activeWorkers.size < numCores) {
-                        const pi = partition(arr, low, high);
-                        const mid = pi;
-
-                        const workerPromise1 = new Promise(resolve => {
-                            tracer.startActiveSpan('quickSort.parallel.worker', workerSpan => {
-                                const worker = new Worker(__filename, {
-                                    workerData: { subArray: arr.slice(low, mid), low, high: mid - 1, isWorker: true }
-                                });
-                                activeWorkers.add(worker);
-
-                                worker.on('message', (workerResult) => {
-                                    for (let i = 0; i < workerResult.sortedArray.length; i++) {
-                                        arr[low + i] = workerResult.sortedArray[i];
-                                    }
-                                    comparisons += workerResult.comparisons;
-                                    swaps += workerResult.swaps;
-                                    activeWorkers.delete(worker);
-                                    workerSpan.end();
-                                    resolve();
-                                });
-
-                                worker.on('error', (error) => {
-                                    console.error('Erro no worker:', error);
-                                    activeWorkers.delete(worker);
-                                    workerSpan.recordException(error);
-                                    workerSpan.end();
-                                    quickSortSequential(arr, low, mid - 1);
-                                    resolve();
-                                });
-
-                                worker.on('exit', (code) => {
-                                    if (code !== 0) {
-                                        console.error(`Worker parou com código ${code}`);
-                                        activeWorkers.delete(worker);
-                                        workerSpan.setAttributes({ 'worker.exitCode': code });
-                                        workerSpan.end();
-                                        quickSortSequential(arr, low, mid - 1);
-                                        resolve();
-                                    }
-                                });
-                            });
-                        });
-
-                        const workerPromise2 = quickSortParallel(arr, mid + 1, high);
-                        return Promise.all([workerPromise1, workerPromise2]);
-
-                    } else {
-                        quickSortSequential(arr, low, high);
-                    }
-                }
-                return Promise.resolve();
-            };
-
-            const quickSortSequential = (arr, low, high) => {
-                if (low < high) {
-                    const pi = partition(arr, low, high);
-                    quickSortSequential(arr, low, pi - 1);
-                    quickSortSequential(arr, pi + 1, high);
-                }
-            };
-
-            return quickSortParallel(array, 0, array.length - 1)
-                .then(() => {
-                    span.setAttributes({ 'algorithm.comparisons': comparisons, 'algorithm.swaps': swaps });
-                    span.end();
-                    return { sortedArray: array, comparisons, swaps };
-                })
-                .catch(err => {
-                    span.recordException(err);
-                    span.end();
-                    throw err;
+    async sort(array, options = {}) {
+        return tracer.startActiveSpan('quickSort.sort', async span => {
+            try {
+                span.setAttributes({
+                    'algorithm.name': 'quickSort',
+                    'array.size': array.length,
+                    'parallel.enabled': options.parallel || false
                 });
+
+                let comparisons = 0;
+                let swaps = 0;
+
+                const partition = (arr, low, high) => {
+                    const pivot = arr[high];
+                    let i = low - 1;
+                    for (let j = low; j < high; j++) {
+                        comparisons++;
+                        if (arr[j] < pivot) {
+                            i++;
+                            [arr[i], arr[j]] = [arr[j], arr[i]];
+                            swaps++;
+                        }
+                    }
+                    [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+                    swaps++;
+                    return i + 1;
+                };
+
+                const quickSort = async (arr, low, high, depth = 0) => {
+                    if (low < high) {
+                        const pi = partition(arr, low, high);
+                        
+                        if (options.parallel && (high - low + 1) > this.maxSubArraySizeForParallel && depth < 2) {
+                            const leftTask = this.runInWorker(arr, low, pi - 1, depth + 1, options);
+                            const rightTask = quickSort(arr, pi + 1, high, depth + 1);
+                            await Promise.all([leftTask, rightTask]);
+                        } else {
+                            await quickSort(arr, low, pi - 1, depth + 1);
+                            await quickSort(arr, pi + 1, high, depth + 1);
+                        }
+                    }
+                };
+
+                await quickSort(array, 0, array.length - 1);
+
+                span.setAttributes({
+                    'algorithm.comparisons': comparisons,
+                    'algorithm.swaps': swaps
+                });
+
+                return { sortedArray: array, comparisons, swaps };
+            } catch (error) {
+                span.recordException(error);
+                throw error;
+            } finally {
+                span.end();
+            }
+        });
+    }
+
+    runInWorker(arr, low, high, depth, options) {
+        return new Promise((resolve, reject) => {
+            const workerCode = `
+                const { parentPort, workerData } = require('worker_threads');
+                const { QuickSort } = require('./quickSort');
+                const sorter = new QuickSort();
+                sorter.sort(workerData.array, workerData.options)
+                    .then(result => parentPort.postMessage(result))
+                    .catch(error => parentPort.postMessage({ error: error.message }));
+            `;
+
+            const worker = new Worker(workerCode, {
+                eval: true,
+                workerData: {
+                    array: arr.slice(low, high + 1),
+                    options: { ...options, parallel: false } // Desativa paralelismo dentro do worker
+                }
+            });
+
+            worker.on('message', (result) => {
+                if (result.error) {
+                    reject(new Error(result.error));
+                } else {
+                    // Copia o resultado de volta para o array original
+                    for (let i = 0; i < result.sortedArray.length; i++) {
+                        arr[low + i] = result.sortedArray[i];
+                    }
+                    resolve(result);
+                }
+            });
+
+            worker.on('error', reject);
+            worker.on('exit', (code) => {
+                if (code !== 0) {
+                    reject(new Error(`Worker stopped with exit code ${code}`));
+                }
+            });
         });
     }
 }
 
-// Execução dentro do worker (para as chamadas recursivas paralelas)
-if (module.parent) {
-    module.exports = QuickSort;
-} else if (workerData && workerData.isWorker) {
-    const { workerData, parentPort } = require('worker_threads');
-    const sorter = new QuickSort();
-    sorter.sort(workerData.subArray).then(result => {
-        parentPort.postMessage({
-            sortedArray: result.sortedArray,
-            comparisons: result.comparisons,
-            swaps: result.swaps
-        });
-    }).catch(err => {
-        console.error('Erro no worker:', err);
-        parentPort.postMessage({ error: err.message });
-    });
-} else {
-    module.exports = QuickSort;
-}
+module.exports = QuickSort;
