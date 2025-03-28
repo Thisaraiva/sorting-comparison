@@ -1,4 +1,4 @@
-const { workerData, parentPort } = require("worker_threads");
+const { workerData, parentPort, threadId } = require("worker_threads");
 const fs = require("fs");
 const { trace } = require('@opentelemetry/api');
 const tracer = trace.getTracer('sorting-app');
@@ -62,19 +62,40 @@ switch (algorithm) {
 tracer.startActiveSpan('sortWorker.execute', span => {
     try {
         const filePath = `src/data/numbers_${size}.txt`;
-        console.log(`Lendo arquivo: ${filePath}`);
-        span.setAttributes({ 'file.path': filePath, 'data.size': size, 'algorithm': algorithm });
+        console.log(`Thread ${threadId} - Lendo arquivo: ${filePath}`);
+        span.setAttributes({ 'file.path': filePath, 'data.size': size, 'algorithm': algorithm, 'thread.id': threadId });
 
-        const data = fs.readFileSync(filePath, "utf8");
-        const numbers = data.split(",").map(Number);
+        let data;
+        try {
+            data = fs.readFileSync(filePath, "utf8");
+        } catch (readError) {
+            console.error(`Thread ${threadId} - Erro ao ler o arquivo: ${readError.message}`);
+            span.recordException(readError);
+            span.setStatus({ code: trace.SpanStatusCode.ERROR, description: `Erro ao ler o arquivo: ${readError.message}` });
+            span.end();
+            parentPort.postMessage({ error: `Erro ao ler o arquivo: ${readError.message}` });
+            return;
+        }
+
+        let numbers;
+        try {
+            numbers = data.split(",").map(Number);
+        } catch (splitError) {
+            console.error(`Thread ${threadId} - Erro ao processar os dados do arquivo: ${splitError.message}`);
+            span.recordException(splitError);
+            span.setStatus({ code: trace.SpanStatusCode.ERROR, description: `Erro ao processar os dados do arquivo: ${splitError.message}` });
+            span.end();
+            parentPort.postMessage({ error: `Erro ao processar os dados do arquivo: ${splitError.message}` });
+            return;
+        }
+
         span.setAttributes({ 'data.length': numbers.length });
 
         const start = Date.now();
-        // Garante que a chamada a sorter.sort() seja aguardada com .then()
         Promise.resolve(sorter.sort(numbers)).then(result => {
             const end = Date.now();
             const executionTime = end - start;
-            const logMessage = `Lendo arquivo: ${filePath}, Algoritmo: ${algorithm}, Tamanho do conjunto de dados: ${size}, Dados lidos: ${data.substring(0, 50)}..., Números convertidos: ${numbers.length} elementos, Tempo de execução: ${end - start}ms, Comparações: ${result.comparisons}, Trocas: ${result.swaps}`;
+            const logMessage = `Thread ${threadId} - Lendo arquivo: ${filePath}, Algoritmo: ${algorithm}, Tamanho do conjunto de dados: ${size}, Dados lidos: ${data.substring(0, 50)}..., Números convertidos: ${numbers.length} elementos, Tempo de execução: ${executionTime}ms, Comparações: ${result.comparisons}, Trocas: ${result.swaps}`;
             console.log(logMessage);
             fs.appendFileSync('src/logs/execution.log', `${new Date().toISOString()} - ${logMessage}\n`);
             span.setAttributes({ 'execution.time': executionTime, 'algorithm.comparisons': result.comparisons, 'algorithm.swaps': result.swaps });
@@ -87,16 +108,16 @@ tracer.startActiveSpan('sortWorker.execute', span => {
                 swaps: result.swaps,
             });
         }).catch(error => {
-            console.error(`Erro no Worker: ${error.message}`);
-            fs.appendFileSync('src/logs/execution.log', `${new Date().toISOString()} - Erro no Worker: ${error.message}\n`);
+            console.error(`Thread ${threadId} - Erro na ordenação: ${error.message}`);
+            fs.appendFileSync('src/logs/execution.log', `${new Date().toISOString()} - Erro na ordenação (Thread ${threadId}): ${error.message}\n`);
             span.recordException(error);
             span.end();
             parentPort.postMessage({ error: error.message });
         });
 
     } catch (error) {
-        console.error(`Erro no Worker: ${error.message}`);
-        fs.appendFileSync('src/logs/execution.log', `${new Date().toISOString()} - Erro no Worker: ${error.message}\n`);
+        console.error(`Thread ${threadId} - Erro geral no worker: ${error.message}`);
+        fs.appendFileSync('src/logs/execution.log', `${new Date().toISOString()} - Erro geral no worker (Thread ${threadId}): ${error.message}\n`);
         span.recordException(error);
         span.end();
         parentPort.postMessage({ error: error.message });

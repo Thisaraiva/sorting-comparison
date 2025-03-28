@@ -10,7 +10,7 @@ class MergeSort extends SortStrategy {
         return tracer.startActiveSpan('mergeSort.sort', span => {
             let comparisons = 0;
             let swaps = 0;
-            const maxSubArraySizeForParallel = 10000; // Ajuste conforme necessidade
+            const maxSubArraySizeForParallel = 15000; // Ajuste conforme necessidade
             const numCores = os.cpus().length;
             const activeWorkers = new Set();
 
