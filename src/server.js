@@ -1,20 +1,52 @@
-const express = require("express");
-const cors = require("cors");
-const path = require("path");
-const routes = require("./routes");
-const app = express();
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const { initializeTelemetry } = require('./opentelemetry/telemetry');
+const routes = require('./routes');
 
-// Habilita o CORS para todas as rotas
-app.use(cors());
+async function startServer() {
+    try {
+        // Inicializa o telemetry primeiro e obtém registerLog
+        const telemetry = await initializeTelemetry();
+        const registerLog = telemetry.registerLog || console.log;
 
-// Middleware para processar JSON
-app.use(express.json());
+        const app = express();
 
-// Servir arquivos estáticos da pasta "public"
-app.use(express.static(path.join(__dirname, "../public")));
+        // Configurações do Express
+        app.use(cors());
+        app.use(express.json());
+        app.use(express.static(path.join(__dirname, '../public')));
 
-// Usar as rotas da API
-app.use("/", routes);
+        // Middleware de logging
+        app.use((req, res, next) => {
+            registerLog('info', `Requisição recebida: ${req.method} ${req.path}`);
+            next();
+        });
 
-// Iniciar o servidor
-app.listen(3000, () => console.log("Servidor rodando na porta 3000"));
+        // Rotas
+        app.use('/', routes);
+
+        // Middleware de erro
+        app.use((err, req, res, next) => {
+            registerLog('error', 'Erro na aplicação', {
+                error: err.message,
+                path: req.path,
+                method: req.method
+            });
+            res.status(500).json({ error: 'Erro interno do servidor' });
+        });
+
+        // Inicia o servidor
+        const PORT = process.env.PORT || 3000;
+        app.listen(PORT, () => {
+            registerLog('info', `Servidor rodando na porta ${PORT}`);
+            console.log(`Servidor rodando na porta ${PORT}`);
+            console.log(`Jaeger UI: http://localhost:16686`);
+        });
+    } catch (err) {
+        console.error('Falha ao iniciar o servidor:', err);
+        process.exit(1);
+    }
+}
+
+startServer();

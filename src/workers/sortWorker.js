@@ -1,102 +1,86 @@
 const { workerData, parentPort } = require("worker_threads");
 const fs = require("fs");
-const { Logger } = require('@opentelemetry/api-logs');
+const path = require("path");
+const { registerLog } = require("../opentelemetry/telemetry");
 
-// Importação de todos os algoritmos de ordenação
-const BubbleSort = require("../algorithms/bubbleSort");
-const BubbleSortImproved = require("../algorithms/bubbleSortImproved");
-const InsertionSort = require("../algorithms/insertionSort");
-const SelectionSort = require("../algorithms/selectionSort");
-const QuickSort = require("../algorithms/quickSort");
-const MergeSort = require("../algorithms/mergeSort");
-const TimSort = require("../algorithms/timSort");
-const HeapSort = require("../algorithms/heapSort");
-const CountingSort = require("../algorithms/countingSort");
-const RadixSort = require("../algorithms/radixSort");
-const ShellSort = require("../algorithms/shellSort");
+const algorithms = {
+    "bubble": require("../algorithms/bubbleSort"),
+    "bubble-improved": require("../algorithms/bubbleSortImproved"),
+    "insertion": require("../algorithms/insertionSort"),
+    "selection": require("../algorithms/selectionSort"),
+    "quick": require("../algorithms/quickSort"),
+    "merge": require("../algorithms/mergeSort"),
+    "tim": require("../algorithms/timSort"),
+    "heap": require("../algorithms/heapSort"),
+    "counting": require("../algorithms/countingSort"),
+    "radix": require("../algorithms/radixSort"),
+    "shell": require("../algorithms/shellSort")
+};
 
-const { algorithm, size } = workerData;
+async function runSorting() {
+    const { algorithm, size, workerId } = workerData;
 
-let sorter;
+    try {
+        if (!algorithms[algorithm]) {
+            throw new Error(`Algoritmo inválido: ${algorithm}`);
+        }
 
-// Seleciona o algoritmo com base no parâmetro recebido
-switch (algorithm) {
-    case "bubble":
-        sorter = new BubbleSort();
-        break;
-    case "bubble-improved":
-        sorter = new BubbleSortImproved();
-        break;
-    case "insertion":
-        sorter = new InsertionSort();
-        break;
-    case "selection":
-        sorter = new SelectionSort();
-        break;
-    case "quick":
-        sorter = new QuickSort();
-        break;
-    case "merge":
-        sorter = new MergeSort();
-        break;
-    case "tim":
-        sorter = new TimSort();
-        break;
-    case "heap":
-        sorter = new HeapSort();
-        break;
-    case "counting":
-        sorter = new CountingSort();
-        break;
-    case "radix":
-        sorter = new RadixSort();
-        break;
-    case "shell":
-        sorter = new ShellSort();
-        break;
-    default:
-        throw new Error("Algoritmo inválido");
-}
+        const sorter = new algorithms[algorithm]();
+        
+        const filePath = path.join(__dirname, `../data/numbers_${size}.txt`);
+        registerLog('info', 'Iniciando execução paralela', {
+            algorithm,
+            size,
+            workerId,
+            threadId: workerData.threadId,
+            filePath
+        });
 
-// Lê os dados do arquivo
-try {
-    const filePath = `src/data/numbers_${size}.txt`;
-    console.log(`Lendo arquivo: ${filePath}`);
+        const data = fs.readFileSync(filePath, "utf8").trim();
+        let numbers = data.split(",").map(num => parseInt(num.trim(), 10));
+        numbers = numbers.filter(num => !isNaN(num));
 
-    const data = fs.readFileSync(filePath, "utf8");
-    console.log(`Dados lidos: ${data.substring(0, 50)}...`); // Exibe os primeiros 50 caracteres
+        if (numbers.length === 0) {
+            throw new Error("Nenhum número válido encontrado");
+        }
 
-    let numbers = data.split(",").map(Number);
-    console.log(`Números convertidos: ${numbers.length} elementos`);
+        const start = Date.now();
+        const result = await sorter.sort(numbers);
+        const end = Date.now();
 
-    if (!numbers || numbers.length === 0) {
-        throw new Error("Dados inválidos ou arquivo vazio.");
+        registerLog('info', 'Execução paralela concluída', {
+            algorithm,
+            size,
+            time: end - start,
+            comparisons: result.comparisons,
+            swaps: result.swaps,
+            workerId,
+            threadId: workerData.threadId,
+            elementsProcessed: numbers.length
+        });
+
+        parentPort.postMessage({
+            algorithm,
+            size,
+            time: end - start,
+            comparisons: result.comparisons,
+            swaps: result.swaps,
+            workerId,
+            threadId: workerData.threadId
+        });
+    } catch (error) {
+        registerLog('error', 'Erro na execução paralela', {
+            algorithm,
+            size,
+            error: error.message,
+            workerId,
+            threadId: workerData.threadId
+        });
+        parentPort.postMessage({ error: error.message });
     }
-
-    // Executa o algoritmo e mede o tempo de execução
-    const start = Date.now();
-    const result = sorter.sort(numbers);
-    const end = Date.now();
-
-    // Logs detalhados
-    const logMessage = `Lendo arquivo: ${filePath}, Algoritmo: ${algorithm}, Tamanho do conjunto de dados: ${size}, Dados lidos: ${data.substring(0, 50)}..., Números convertidos: ${numbers.length} elementos, Tempo de execução: ${end - start}ms, Comparações: ${result.comparisons}, Trocas: ${result.swaps}`;
-    console.log(logMessage);
-
-    // Escreve o log no arquivo execution.log
-    fs.appendFileSync('src/logs/execution.log', `${new Date().toISOString()} - ${logMessage}\n`);
-
-    // Envia os resultados de volta para o thread principal
-    parentPort.postMessage({
-        algorithm,
-        size,
-        time: end - start, // Tempo de execução em milissegundos
-        comparisons: result.comparisons, // Número de comparações
-        swaps: result.swaps, // Número de trocas
-    });
-} catch (error) {
-    console.error(`Erro no Worker: ${error.message}`);
-    fs.appendFileSync('src/logs/execution.log', `${new Date().toISOString()} - Erro no Worker: ${error.message}\n`);
-    parentPort.postMessage({
-        error: error.message,
-    });
 }
+
+// Inicia a execução
+runSorting().catch(err => {
+    parentPort.postMessage({ error: err.message });
+});
