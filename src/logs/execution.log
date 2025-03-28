@@ -453,3 +453,18 @@
 2025-03-27T12:48:55.131Z - [INFO] Iniciando execução de algoritmo {"algorithm":"merge","size":"100000","workerId":"bc26290a-0ec3-4c65-ae5b-a80a690a738e","requestId":"92aca4fe-88a3-4b47-b970-05dfc0f275d9"}
 2025-03-27T12:48:57.240Z - [INFO] Iniciando execução paralela {"algorithm":"merge","size":"100000","workerId":"bc26290a-0ec3-4c65-ae5b-a80a690a738e","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
 2025-03-27T12:48:57.481Z - [ERROR] Erro na execução {"algorithm":"merge","size":"100000","error":"Cannot find module 'C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\algorithms\\mergeSortWorker.js'","workerId":"bc26290a-0ec3-4c65-ae5b-a80a690a738e","requestId":"92aca4fe-88a3-4b47-b970-05dfc0f275d9"}
+2025-03-28T20:31:09.859Z - [INFO] OpenTelemetry SDK inicializado com sucesso {}
+2025-03-28T20:31:09.914Z - [INFO] Servidor rodando na porta 3000 {}
+2025-03-28T20:31:33.965Z - [INFO] Requisição recebida: POST /generate-numbers {}
+2025-03-28T20:31:33.970Z - [INFO] Iniciando geração de números {"requestId":"6ec3c6d6-0b8b-4337-94ef-6cbe7be11c7d"}
+2025-03-28T20:31:34.023Z - [INFO] Números gerados com sucesso {"requestId":"6ec3c6d6-0b8b-4337-94ef-6cbe7be11c7d"}
+2025-03-28T20:31:55.317Z - [INFO] Requisição recebida: GET /sort/quick/1000 {}
+2025-03-28T20:31:55.323Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"1000","workerId":"b3e6b652-ef29-4dbe-86f1-ddee8a9710a2","requestId":"4c5b28c6-b300-406f-b2c0-1a82cb230f48"}
+2025-03-28T20:31:57.351Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"1000","workerId":"b3e6b652-ef29-4dbe-86f1-ddee8a9710a2","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_1000.txt"}
+2025-03-28T20:31:57.410Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"1000","time":11,"comparisons":10591,"swaps":5617,"workerId":"b3e6b652-ef29-4dbe-86f1-ddee8a9710a2","elementsProcessed":1000}
+2025-03-28T20:31:57.412Z - [INFO] Execução concluída {"algorithm":"quick","size":"1000","time":11,"comparisons":10591,"swaps":5617,"workerId":"b3e6b652-ef29-4dbe-86f1-ddee8a9710a2","requestId":"4c5b28c6-b300-406f-b2c0-1a82cb230f48"}
+2025-03-28T20:32:29.852Z - [INFO] Requisição recebida: GET /sort/quick/100000 {}
+2025-03-28T20:32:29.856Z - [INFO] Iniciando execução de algoritmo {"algorithm":"quick","size":"100000","workerId":"20b2f400-d520-466e-b00e-779e5557f6e4","requestId":"e55ee1ce-07ef-4360-90a9-3c7d7520d243"}
+2025-03-28T20:32:31.782Z - [INFO] Iniciando execução paralela {"algorithm":"quick","size":"100000","workerId":"20b2f400-d520-466e-b00e-779e5557f6e4","filePath":"C:\\Programacao\\Projetos\\JavaScript\\sorting-comparison\\src\\data\\numbers_100000.txt"}
+2025-03-28T20:32:32.106Z - [INFO] Execução paralela concluída {"algorithm":"quick","size":"100000","time":254,"comparisons":null,"swaps":null,"workerId":"20b2f400-d520-466e-b00e-779e5557f6e4","elementsProcessed":100000}
+2025-03-28T20:32:32.108Z - [INFO] Execução concluída {"algorithm":"quick","size":"100000","time":254,"comparisons":null,"swaps":null,"workerId":"20b2f400-d520-466e-b00e-779e5557f6e4","requestId":"e55ee1ce-07ef-4360-90a9-3c7d7520d243"}

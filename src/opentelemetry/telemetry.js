@@ -1,10 +1,9 @@
+// src/opentelemetry/telemetry.js
 const { NodeSDK } = require('@opentelemetry/sdk-node');
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
 const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');
 const { OTLPLogExporter } = require('@opentelemetry/exporter-logs-otlp-http');
 const { LoggerProvider, SimpleLogRecordProcessor } = require('@opentelemetry/sdk-logs');
-const { Resource } = require('@opentelemetry/resources');
-const { SEMATTRS_SERVICE_NAME, SEMATTRS_SERVICE_VERSION } = require('@opentelemetry/semantic-conventions');
 const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');
 const fs = require('fs');
 const path = require('path');
@@ -14,57 +13,29 @@ diag.setLogger(new DiagConsoleLogger(), {
     logLevel: DiagLogLevel.INFO
 });
 
-// Configuração do recurso para identificar o serviço
-const resource = new Resource({
-    [SEMATTRS_SERVICE_NAME]: 'sorting-comparison',
-    [SEMATTRS_SERVICE_VERSION]: '1.0.0',
-});
-
-// Configuração dos exporters
-const traceExporter = new OTLPTraceExporter({
-    url: 'http://localhost:4318/v1/traces',
-    headers: {},
-    concurrencyLimit: 10,
-    timeoutMillis: 30000
-});
-
-const logExporter = new OTLPLogExporter({
-    url: 'http://localhost:4318/v1/logs',
-    headers: {},
-    concurrencyLimit: 10,
-    timeoutMillis: 30000
-});
-
-// Configuração do LoggerProvider
-const loggerProvider = new LoggerProvider({
-    resource: resource,
-});
-
-loggerProvider.addLogRecordProcessor(
-    new SimpleLogRecordProcessor(logExporter)
-);
-
-// Criação do SDK
+// Configuração do SDK sem usar Resource diretamente
 const sdk = new NodeSDK({
-    resource: resource,
-    traceExporter: traceExporter,
+    serviceName: 'sorting-comparison',
+    traceExporter: new OTLPTraceExporter({
+        url: 'http://localhost:4318/v1/traces',
+        timeoutMillis: 30000
+    }),
     instrumentations: [
         getNodeAutoInstrumentations({
-            // Desabilita instrumentações não necessárias para melhor performance
-            '@opentelemetry/instrumentation-http': {
-                enabled: true
-            },
-            '@opentelemetry/instrumentation-express': {
-                enabled: true
-            },
-            // Desabilita todas as outras instrumentações
-            '@opentelemetry/instrumentation-aws-sdk': { enabled: false },
-            '@opentelemetry/instrumentation-mongodb': { enabled: false },
-            // Adicione outras que não são necessárias
+            '@opentelemetry/instrumentation-http': { enabled: true },
+            '@opentelemetry/instrumentation-express': { enabled: true }
         })
-    ],
-    loggerProvider: loggerProvider,
+    ]
 });
+
+// Configuração do LoggerProvider independente
+const loggerProvider = new LoggerProvider();
+loggerProvider.addLogRecordProcessor(
+    new SimpleLogRecordProcessor(new OTLPLogExporter({
+        url: 'http://localhost:4318/v1/logs',
+        timeoutMillis: 30000
+    }))
+);
 
 // Função para registrar logs
 function registerLog(level, message, attributes = {}) {
@@ -94,6 +65,8 @@ function registerLog(level, message, attributes = {}) {
         attributes: {
             ...attributes,
             'timestamp': timestamp,
+            'service.name': 'sorting-comparison',
+            'service.version': '1.0.0'
         },
     });
 }
@@ -106,9 +79,10 @@ async function initializeTelemetry() {
         return { registerLog, loggerProvider };
     } catch (error) {
         registerLog('error', 'Falha ao inicializar OpenTelemetry SDK', { error: error.message });
-        // Fallback para logs sem OpenTelemetry
         return { 
-            registerLog, 
+            registerLog: (level, message, attributes) => {
+                console.log(`[${level}] ${message}`, attributes);
+            },
             loggerProvider: {
                 getLogger: () => ({
                     emit: () => {}
